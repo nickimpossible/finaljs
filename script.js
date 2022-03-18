@@ -1,4 +1,4 @@
-
+//json-server --watch db.json
 const arrayDosFuncionario = [];
 class Usuario{
       tipo;
@@ -34,11 +34,11 @@ class Vaga {
     remuneracao;
     candidatos = [];
 
-    constructor(titulo , descrição , remuneracao ,candidatos){
+    constructor(titulo , descrição , remuneracao){
         this.titulo = titulo;
         this.descrição = descrição;
         this.remuneracao = remuneracao;
-        this.candidatos = candidatos;
+        
     }
 }
 
@@ -175,7 +175,25 @@ const redirecionaPag = (atual,direciona) =>{
     pagDireciona.classList.toggle('d-none');
 
 }
+const cadastrarVagas = () =>{
+    const tituloVaga = document.getElementById('titulo-input').value;
+    const descricaoVaga = document.getElementById('descricao-input').value;
+    let remunuceracaoVaga = document.getElementById('remuneracao-input').value;
 
+    if(tituloVaga === '' || descricaoVaga === '' || isNaN(remunuceracaoVaga.replaceAll(',','')) || remunuceracaoVaga.replaceAll(',','') < 0){
+        alert('Ops, Preencha os campos corretamente');
+    }else{
+        remunuceracaoVaga = 'R$'+remunuceracaoVaga;
+        const instaciaVaga = new Vaga(tituloVaga,descricaoVaga,remunuceracaoVaga);
+        axios.post('http://localhost:3000/Vagas' , instaciaVaga)
+        .then((sucesso)=>{
+             console.log('Vaga Cadastrada Com sucesso');
+        })
+        .catch((erro) =>{
+            console.log('Ops , não foi possível cadastrar a vaga');    
+        })
+    }
+}
 
   // AQUI PARA BAIXO SÃO SÓ EXEMPLOS DE COMO UTILIZAR O AXIOS
     // // PARA PUT E DELETE PRECISAMOS PASSAR TAMBÉM UM ID 

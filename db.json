@@ -44,7 +44,118 @@
       "senha": "teasrertwew123324W2!",
       "candidaturas": [],
       "id": 5
+    },
+    {
+      "titulo": "Teste",
+      "descrição": "3223",
+      "remuneracao": "Um produto legal",
+      "id": 6
+    },
+    {
+      "titulo": "dsds",
+      "descrição": "323223",
+      "remuneracao": "dsdss",
+      "id": 7
+    },
+    {
+      "titulo": "ewew",
+      "descrição": "121",
+      "remuneracao": "ewew",
+      "candidatos": [],
+      "id": 8
     }
   ],
-  "Vagas;": []
+  "Vagas": [
+    {
+      "titulo": "teste",
+      "descrição": "teste",
+      "remuneracao": "2",
+      "candidatos": [],
+      "id": 1
+    },
+    {
+      "titulo": "teste",
+      "descrição": "teste",
+      "remuneracao": "22",
+      "candidatos": [],
+      "id": 2
+    },
+    {
+      "titulo": "teste",
+      "descrição": "teste",
+      "remuneracao": "R$1200",
+      "candidatos": [],
+      "id": 3
+    },
+    {
+      "titulo": "teste",
+      "descrição": "teste",
+      "remuneracao": "R$<tt>1200</tt>",
+      "candidatos": [],
+      "id": 4
+    },
+    {
+      "titulo": "teste",
+      "descrição": "testes",
+      "remuneracao": "R$1200,00",
+      "candidatos": [],
+      "id": 5
+    },
+    {
+      "titulo": "teste",
+      "descrição": "teste",
+      "remuneracao": "R$1200,00",
+      "candidatos": [],
+      "id": 6
+    },
+    {
+      "titulo": "teste",
+      "descrição": "teste",
+      "remuneracao": "R$-2",
+      "candidatos": [],
+      "id": 7
+    },
+    {
+      "titulo": "teste",
+      "descrição": "teste",
+      "remuneracao": "R$-2",
+      "candidatos": [],
+      "id": 8
+    },
+    {
+      "titulo": "teste",
+      "descrição": "teste",
+      "remuneracao": "R$-2",
+      "candidatos": [],
+      "id": 9
+    },
+    {
+      "titulo": "teste",
+      "descrição": "teste",
+      "remuneracao": "R$-2",
+      "candidatos": [],
+      "id": 10
+    },
+    {
+      "titulo": "teste",
+      "descrição": "teste",
+      "remuneracao": "R$-2",
+      "candidatos": [],
+      "id": 11
+    },
+    {
+      "titulo": "teste",
+      "descrição": "teste",
+      "remuneracao": "R$-2",
+      "candidatos": [],
+      "id": 12
+    },
+    {
+      "titulo": "teste",
+      "descrição": "teste",
+      "remuneracao": "R$1200,00",
+      "candidatos": [],
+      "id": 13
+    }
+  ]
 }
