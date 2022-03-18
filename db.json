@@ -35,6 +35,15 @@
       "senha": "tesadas@WWw1",
       "candidaturas": [],
       "id": 4
+    },
+    {
+      "tipo": "Trabalhador",
+      "nome": "Paulo",
+      "dataNascimento": "30/10/2003",
+      "email": "paulo@dbccompany.com",
+      "senha": "teasrertwew123324W2!",
+      "candidaturas": [],
+      "id": 5
     }
   ],
   "Vagas;": []

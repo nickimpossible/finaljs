@@ -149,6 +149,33 @@ const loginNoSistema = () =>{
     )
 }
 
+const esqueciSenha = () =>{
+    let regulaFunc = true;
+    const emailLog = document.getElementById('email-input-login').value;
+    const senhaLog = document.getElementById('password-input-login').value;
+    let funcaoDoUsuario = '';
+    axios.get('http://localhost:3000/Usuarios')
+    .then((sucesso) =>{
+        sucesso.data.forEach(element => {
+            if(emailLog === element.email && regulaFunc){
+                alert('Sua senha é ' + element.senha )
+                regulaFunc = false;
+            }            
+        });    
+    }
+    ).catch((reject)=>{
+        console.log('ops!Um erro foi encontrado')
+    }
+    )
+}
+const redirecionaPag = (atual,direciona) =>{
+    const pagAtual = document.getElementById(atual);
+    const pagDireciona = document.getElementById(direciona);
+    pagAtual.classList.toggle('d-none');
+    pagDireciona.classList.toggle('d-none');
+
+}
+
 
   // AQUI PARA BAIXO SÃO SÓ EXEMPLOS DE COMO UTILIZAR O AXIOS
     // // PARA PUT E DELETE PRECISAMOS PASSAR TAMBÉM UM ID 
