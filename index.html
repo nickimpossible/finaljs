@@ -42,11 +42,43 @@
                 <button type="button" class="btn btn-link">Não possui cadastro?</button>
             </div>
         </div>
-<<<<<<< HEAD
-        <section id="tela-de-cadastro" class="w-50 pb-3 border border-secondary rounded flex-column d-flex align-items-center justify-content-center">
 
+        <section id="tela-de-cadastro"
+            class="w-50 pb-3 border border-secondary rounded flex-column d-flex align-items-center  position-absolute top-50 start-50 translate-middle">
+            <div class="bg bg-secondary w-100 h-100 text-center p-2 text-white"><span>Cadastro</span></div>
+
+            <div class="mb-2 mt-4 w-50">
+                <label for="">Tipo de Usuario</label>
+                <br>
+                <select class="form-select" aria-label="Default select example" id="select-input">
+                    <option value="Trabalhador">Trabalhador</option>
+                    <option value="Recrutador">Recrutador</option>
+                </select>
+            </div>
+            <div class="mb-2 w-50">
+                <label for="">Nome Completo*</label>
+                <input type="text" class="form-control" id="nome-input" onkeyup="validaNome(event)">
+            </div>
+            <div class="mb-2 w-50">
+                <label for="">Data de Nascimento*</label>
+                <input type="text" class="form-control w-150" id="data-input" onkeyup="adicionarMascaraData(event)">
+            </div>
+            <div class="mb-2 w-50">
+                <label for="">Email*</label>
+                <input type="text" class="form-control w-150" id="email-input" onkeyup="validarEmail(event)">
+            </div>
+            <div class="mb-2 w-50">
+                <label for="">Senha*</label>
+                <input type="text" class="form-control " id="senha-input" onkeyup="validarSenha(event)">
+            </div>
+            <div class="d-flex justify-content-between w-50 mt-4 mb-4 ">
+                <button class="btn btn-light btn-lg">Voltar</button>
+                <button class="btn btn-secondary btn-lg" onclick="validarCadastro()">Cadastrar</button>
+            </div> -->
+            <!-- Minha sessão -->
         </section>
-        <section id="tela-inicial-trabalhador" class="w-50 pb-3 border border-secondary rounded flex-column d-flex align-items-center justify-content-center mt-5">
+        <section id="tela-inicial-trabalhador"
+            class="w-50 pb-3 border border-secondary rounded flex-column d-flex align-items-center justify-content-center mt-5">
             <div class="bg bg-secondary w-100 h-100 text-center p-2 text-white">
                 <span>VAGAS</span>
             </div>
@@ -63,81 +95,36 @@
                     <button type="button" class="btn btn-secondary mt-3">Sair</button>
                 </div>
             </div>
-            
-=======
-    
-    <section id="tela-de-cadastro"
-        class="w-50 pb-3 border border-secondary rounded flex-column d-flex align-items-center  position-absolute top-50 start-50 translate-middle">
-        <div class="bg bg-secondary w-100 h-100 text-center p-2 text-white"><span>Cadastro</span></div>
+        </section>
+        <section id="tela-inicial-recrutador"
+            class="w-50 pb-3 border border-secondary rounded flex-column d-flex align-items-center justify-content-center d-none">
 
-        <div class="mb-2 mt-4 w-50">
-            <label for="">Tipo de Usuario</label>
-            <br>
-            <select class="form-select" aria-label="Default select example" id="select-input">
-                <option value="Trabalhador">Trabalhador</option>
-                <option value="Recrutador">Recrutador</option>
-            </select>
-        </div>
-        <div class="mb-2 w-50">
-            <label for="">Nome Completo*</label>
-            <input type="text" class="form-control" id="nome-input" onkeyup="validaNome(event)">
-        </div>
-        <div class="mb-2 w-50">
-            <label for="">Data de Nascimento*</label>
-            <input type="text" class="form-control w-150" id="data-input" onkeyup="adicionarMascaraData(event)">
-        </div>
-        <div class="mb-2 w-50">
-            <label for="">Email*</label>
-            <input type="text" class="form-control w-150" id="email-input" onkeyup="validarEmail(event)">
-        </div>
-        <div class="mb-2 w-50">
-            <label for="">Senha*</label>
-            <input type="text" class="form-control " id="senha-input" onkeyup="validarSenha(event)">
-        </div>
-        <div class="d-flex justify-content-between w-50 mt-4 mb-4 ">
-            <button class="btn btn-light btn-lg">Voltar</button>
-            <button class="btn btn-secondary btn-lg" onclick="validarCadastro()">Cadastrar</button>
-        </div> -->
-        <!-- Minha sessão -->
-    </section>
-    <section id="tela-inicial-trabalhador"
-        class="w-50 pb-3 border border-secondary rounded flex-column d-flex align-items-center justify-content-center d-none">
-        <div>
-        </div>
->>>>>>> 95c3565215ac3edb4d336cc79f1e95406012c388
+        </section>
 
-    </section>
-    <section id="tela-inicial-recrutador"
-        class="w-50 pb-3 border border-secondary rounded flex-column d-flex align-items-center justify-content-center d-none">
+        <section id="tela-de-detalhe-recrutador"
+            class="w-50 pb-3 border border-secondary rounded flex-column d-flex align-items-center justify-content-center">
+            <div class="bg bg-secondary w-100 h-100 text-center p-2 text-white">
+                <span>DETALHE DA VAGA</span>
+            </div>
+            <div class="d-flex flex-column w-75 h-100 p-2 mt-3 border border-secondary rounded">
+                <p id="titulo-detalhe-vaga">Título: </p>
+                <p id="descricao-detalhe-vaga">Descrição: Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Doloremque, nemo necessitatibus eligendi iste</p>
+                <p id="remuneracao-detalhe-vaga">Remuneração: </p>
+            </div>
+            <div id="candidatos-na-vaga">
+                <h1 class="text-center fs-3 pt-3 pb-2">Candidatos na vaga</h1>
+            </div>
+            <div class="bg bg-secondary w-75 h-100 p-2 text-white d-flex justify-content-evenly">
+                <div><span>Nome</span></div>
+                <div><span>Data de nascimento</span></div>
+                <div><span></span></div>
+            </div>
 
-    </section>
-    <section id="tela-inicial-recrutador"
-        class="w-50 pb-3 border border-secondary rounded flex-column d-flex align-items-center justify-content-center">
-    </section>
-    
-    <section id="tela-de-detalhe-recrutador"
-        class="w-50 pb-3 border border-secondary rounded flex-column d-flex align-items-center justify-content-center">
-        <div class="bg bg-secondary w-100 h-100 text-center p-2 text-white">
-            <span>DETALHE DA VAGA</span>
-        </div>
-        <div class="d-flex flex-column w-75 h-100 p-2 mt-3 border border-secondary rounded">
-            <p id="titulo-detalhe-vaga">Título: </p>
-            <p id="descricao-detalhe-vaga">Descrição: Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Doloremque, nemo necessitatibus eligendi iste</p>
-            <p id="remuneracao-detalhe-vaga">Remuneração: </p>
-        </div>
-        <div id="candidatos-na-vaga">
-            <h1 class="text-center fs-3 pt-3 pb-2">Candidatos na vaga</h1>
-        </div>
-        <div class="bg bg-secondary w-75 h-100 p-2 text-white d-flex justify-content-evenly">
-            <div><span>Nome</span></div>
-            <div><span>Data de nascimento</span></div>
-            <div><span></span></div>
-        </div>
+        </section>
 
-    </section> 
-    
-        <section id="tela-de-detalhe-trabalhador" class="w-50 pb-3 border border-secondary rounded flex-column d-flex align-items-center justify-content-center">
+        <section id="tela-de-detalhe-trabalhador"
+            class="w-50 pb-3 border border-secondary rounded flex-column d-flex align-items-center justify-content-center">
 
         </section>
     </div>
