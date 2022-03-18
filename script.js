@@ -129,18 +129,22 @@ const cadastrarUsuario = () =>{
 
 const loginNoSistema = () =>{
     let loginValid = false;
-    const emailLog = document.getElementById('').value;
-    const senhaLog = document.getElementById('').value;
+    const emailLog = document.getElementById('email-input-login').value;
+    const senhaLog = document.getElementById('password-input-login').value;
     let funcaoDoUsuario = '';
     axios.get('http://localhost:3000/Usuarios')
     .then((sucesso) =>{
         sucesso.data.forEach(element => {
-            if(emailLog === element.email && senhaLog === element.senhaLog){
+            if(emailLog === element.email && senhaLog === element.senha){
                 loginValid = true;
                 funcaoDoUsuario = element.tipo;
-
+                console.log(loginValid);
+                console.log(funcaoDoUsuario);
             }            
         });    
+    }
+    ).catch((reject)=>{
+        console.log('ops!Um erro foi encontrado')
     }
     )
 }
