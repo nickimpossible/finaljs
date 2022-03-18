@@ -13,7 +13,7 @@
     <title>Projeto Final</title>
 </head>
 
-<body style="height: 50vh;">
+<body>
     <div class="h-100 flex-column d-flex align-items-center justify-content-center">
         <section id="tela-de-login"
             class="w-50 pb-3 border border-secondary rounded flex-column d-flex align-items-center justify-content-center mt-5 ">
@@ -33,15 +33,16 @@
             <div class="w-50 d-grid gap-2">
                 <button type="button" class="btn btn-secondary " onclick="loginNoSistema()">Login</button>
             </div>
-        </section>
+       
         <div id="alternativas-login" class="d-flex justify-content-between w-50">
             <div id="esqueceu-senha">
-                <button type="button" class="btn btn-link">Esqueceu a senha?</button>
+                <button type="button" class="btn btn-link" onclick="esqueciSenha()">Esqueceu a senha?</button>
             </div>
             <div id="nao-possui-cadastro">
-                <button type="button" class="btn btn-link">Não possui cadastro?</button>
+                <button type="button" class="btn btn-link" onclick="redirecionaPag('tela-de-login','tela-de-cadastro')">Não possui cadastro?</button>
             </div>
         </div>
+         </section>
 
         <section id="tela-de-cadastro"
             class="w-50 pb-3 border border-secondary rounded flex-column d-flex align-items-center  position-absolute top-50 start-50 translate-middle d-none">
@@ -72,9 +73,9 @@
                 <input type="text" class="form-control " id="senha-input" onkeyup="validarSenha(event)">
             </div>
             <div class="d-flex justify-content-between w-50 mt-4 mb-4 ">
-                <button class="btn btn-light btn-lg">Voltar</button>
+                <button class="btn btn-light btn-lg" onclick="redirecionaPag('tela-de-cadastro','tela-de-login')">Voltar</button>
                 <button class="btn btn-secondary btn-lg" onclick="validarCadastro()">Cadastrar</button>
-            </div> -->
+            </div> 
             <!-- Minha sessão -->
         </section>
         <section id="tela-inicial-trabalhador"
