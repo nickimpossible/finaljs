@@ -127,6 +127,24 @@ const cadastrarUsuario = () =>{
     })
 }
 
+const loginNoSistema = () =>{
+    let loginValid = false;
+    const emailLog = document.getElementById('').value;
+    const senhaLog = document.getElementById('').value;
+    let funcaoDoUsuario = '';
+    axios.get('http://localhost:3000/Usuarios')
+    .then((sucesso) =>{
+        sucesso.data.forEach(element => {
+            if(emailLog === element.email && senhaLog === element.senhaLog){
+                loginValid = true;
+                funcaoDoUsuario = element.tipo;
+
+            }            
+        });    
+    }
+    )
+}
+
 
   // AQUI PARA BAIXO SÃO SÓ EXEMPLOS DE COMO UTILIZAR O AXIOS
     // // PARA PUT E DELETE PRECISAMOS PASSAR TAMBÉM UM ID 

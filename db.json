@@ -17,6 +17,15 @@
       "senha": "rwers\\d1@@!!1",
       "candidaturas": [],
       "id": 2
+    },
+    {
+      "tipo": "Trabalhador",
+      "nome": "tger",
+      "dataNascimento": "30/10/2003",
+      "email": "paulo@dbccompany.com",
+      "senha": "teasrertwew123324W2!",
+      "candidaturas": [],
+      "id": 3
     }
   ],
   "Vagas;": []
