@@ -16,7 +16,7 @@
 <body>
     <div class="h-100 flex-column d-flex align-items-center justify-content-center">
         <section id="tela-de-login"
-            class="w-50 pb-3 border border-secondary rounded flex-column d-flex align-items-center justify-content-center mt-5 ">
+            class="w-50 pb-3 border border-secondary rounded flex-column d-flex align-items-center justify-content-center mt-5 d-none">
             <div class="bg bg-secondary w-100 h-100 text-center p-2 text-white">
                 <span>Login do Sistema</span>
             </div>
@@ -121,12 +121,30 @@
                 <div><span>Data de nascimento</span></div>
                 <div><span></span></div>
             </div>
-
         </section>
 
         <section id="tela-de-detalhe-trabalhador"
             class="w-50 pb-3 border border-secondary rounded flex-column d-flex align-items-center justify-content-center d-none">
+        </section>
+        <section id="tela-cadastro-de-vaga" class="w-50 pb-3 border border-secondary rounded flex-column d-flex align-items-center justify-content-center mt-5">
+            <div class="bg bg-secondary w-100 h-100 text-center p-2 text-white"><span>Cadastro De Vagas</span></div>
 
+            <div class="mb-2 w-50 mt-4">
+                <label for="">Título*</label>
+                <input type="text" class="form-control w-150" id="titulo-input">
+            </div>
+            <div class="mb-2 w-50">
+                <label for="">Descrição*</label>
+                <input type="text" class="form-control w-150" id="descricao-input">
+            </div>
+            <div class="mb-2 w-50">
+                <label for="">Remuneração*</label>
+                <input type="text" class="form-control " id="remuneracao-input">
+            </div>
+            <div class="d-flex justify-content-between w-50 mt-4 mb-4 ">
+                <button class="btn btn-light btn-lg" onclick="redirecionaPag('','')">Voltar</button>
+                <button class="btn btn-secondary btn-lg" onclick="cadastrarVagas()">Cadastrar</button>
+            </div> 
         </section>
     </div>
 
