@@ -10,7 +10,6 @@ class Usuario{
       senha; 
       candidatura;
 
-
     constructor(tipo ,nome,dataNascimento,email,senha){
         this.tipo = tipo;
         this.nome = nome;
@@ -211,15 +210,15 @@ const cadastrarVagas = (event) =>{
         })
     }
 }
-{/* <div class="d-flex justify-content-between w-75 border border-secondary rounded p-3" id="div-id1" >
+/* <div class="d-flex justify-content-between w-75 border border-secondary rounded p-3" id="div-id1" >
                     <div>
                         <span class="fw-bold">Título: Desenvolvedor Full-stack</span>
                     </div>
                     <div>
                         <span class="fw-bold">Remuneração</span><span>: R$ 5.500,00</span>
                     </div>
-</div> */}
-const mostrarVagas = () =>{
+</div> */
+const mostrarVagas = () => {
     const listaDeVagas = trabalhador?document.getElementById('vagas-lista-trabalhador'):document.getElementById('vagas-lista-recrutador')
     axios.get('http://localhost:3000/Vagas')
     .then((sucess) =>{
@@ -291,6 +290,7 @@ const detalhesDaVaga = (event) =>{
         console.log('Ops , ocorreu um erro')
     })
 }
+
 const funcaoRecarrega = () =>{
     document.location.reload(true);
 }
@@ -315,19 +315,22 @@ const funcaoRecarrega = () =>{
 
 const seCandidar = async () =>{
         const btnCadastrar = document.getElementById('btn-cadastro');
-      
-        await axios.get(`http://localhost:3000/Usuarios/${usuarioDoSite[0]}`) 
+        let retornoUsuarioComCandidatura = {}
+        let temp = await axios.get(`http://localhost:3000/Usuarios/${usuarioDoSite[0]}`) 
             .then((success) => {
                     const instaciaVaga = new Candidatura(usuarioDoSite[1],usuarioDoSite[0],false);
-                    let candidaturaTeste = [];
-                    candidaturaTeste.push(instaciaVaga);
-                    let listaArrayTeste = { usuario:[success.data] };
-                    listaArrayTeste.candidatura = {candidatura:[candidaturaTeste]};
-                    console.log(candidaturaTeste)
-                    console.log(listaArrayTeste);
+                    // let candidaturaTeste = [];
+                    // candidaturaTeste.push(instaciaVaga);
+                    retornoUsuarioComCandidatura = { usuario:[success.data, success.data.candidatura.push(instaciaVaga)]};
+                    //retornoUsuarioComCandidatura.candidatura = {candidatura: instaciaVaga};
+                    console.log(retornoUsuarioComCandidatura);
                 })
             
-    }
+            axios.put(`http://localhost:3000/Usuarios/${usuarioDoSite[0]}`, retornoUsuarioComCandidatura)
+                .then((success) =>{
+                    alert('Sucesso! Candidatura aceita')
+                })
+}
     // const candidaturaDoUsuario = {candidatura: instaciaVaga};
     // axios.put(`http://localhost:3000/Usuarios/${usuarioDoSite[0]}`,candidaturaDoUsuario)
     // .then((success) =>{

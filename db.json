@@ -8,7 +8,7 @@
       },
       "id": 1
     },
-    { 
+    {
       "tipo": "Recrutador",
       "nome": "Paulo",
       "dataNascimento": "20/12/2002",
@@ -25,11 +25,6 @@
       "id": 3
     },
     {
-      "tipo": "Trabalhador",
-      "nome": "Thais",
-      "dataNascimento": "10/10/2002",
-      "email": "thais@dbccompany.com",
-      "senha": "teasr3232e@rtwew123324W2!",
       "id": 4
     },
     {
@@ -57,35 +52,22 @@
       "usuario": [
         {
           "tipo": "Trabalhador",
-          "nome": "testesda",
-          "dataNascimento": "30/10/2003",
-          "email": "tstes@dbccompany.com",
-          "senha": "teasr3232e@rtwew123324W2!",
-          "candidatura": [],
-          "id": 7
-        }
-      ],
-      "candidatura": {
-        "candidatura": [
-          [
+          "nome": "joaozinhodasilva",
+          "dataNascimento": "12/10/1997",
+          "email": "joaozinho@dbccompany.com",
+          "senha": "123vaidarCerto!",
+          "candidatura": [
             {
               "idVaga": "",
-              "idCandidato": 7,
+              "idCandidato": 12,
               "reprovado": false
             }
-          ]
-        ]
-      },
-      "id": 7
-    },
-    {
-      "tipo": "Trabalhador",
-      "nome": "gustavo",
-      "dataNascimento": "12/01/2001",
-      "email": "gustavo@dbccompany.com",
-      "senha": "123Wer!!!",
-      "candidatura": [],
-      "id": 8
+          ],
+          "id": 12
+        },
+        1
+      ],
+      "id": 12
     }
   ],
   "Vagas": [
