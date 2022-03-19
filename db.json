@@ -100,6 +100,15 @@
         }
       ],
       "id": 8
+    },
+    {
+      "tipo": "Recrutador",
+      "nome": "essecararecruta",
+      "dataNascimento": "12/10/1997",
+      "email": "recruta@dbccompany.com",
+      "senha": "123verdade!",
+      "candidatura": [],
+      "id": 9
     }
   ],
   "Vagas": [
