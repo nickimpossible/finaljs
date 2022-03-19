@@ -1,12 +1,6 @@
 {
   "Usuarios": [
     {
-      "tipo": "Trabalhador",
-      "nome": "Nome",
-      "dataNascimento": "30/10/2003",
-      "email": "paulo@dbccompany.com",
-      "senha": "3213!swW",
-      "candidaturas": [],
       "id": 1
     },
     {
@@ -81,6 +75,24 @@
       "senha": "teasrertwew123324W2!",
       "candidaturas": [],
       "id": 10
+    },
+    {
+      "tipo": "Trabalhador",
+      "nome": "thais",
+      "dataNascimento": "30/10/2002",
+      "email": "thais@dbccompany.com",
+      "senha": "33322!wdeW",
+      "candidaturas": [],
+      "id": 11
+    },
+    {
+      "id": 12
+    },
+    {
+      "id": 13
+    },
+    {
+      "id": 14
     }
   ],
   "Vagas": [
@@ -202,6 +214,13 @@
       "remuneracao": "R$2131232",
       "candidatos": [],
       "id": 17
+    },
+    {
+      "titulo": "2",
+      "descrição": 1,
+      "remuneracao": false,
+      "candidatos": [],
+      "id": 18
     }
   ]
 }

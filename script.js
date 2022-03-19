@@ -47,7 +47,8 @@ var booleanDoEmail = false;
 var booleanDoData = false;
 var booleanDaSenha = false;
 var booleanNome = false;
-
+const usuarioDoSite = [];
+var usuarioArray = [];
 const validarEmail = (event) => {
     
     const email = event.target.value;
@@ -142,6 +143,7 @@ const loginNoSistema = () =>{
                 funcaoDoUsuario = element.tipo;
                 console.log(loginValid);
                 console.log(funcaoDoUsuario);
+                usuarioDoSite.push(element.id);
                 if(funcaoDoUsuario === 'Trabalhador'){ 
                     trabalhador = true;
                     redirecionaPag('tela-de-login','tela-inicial-trabalhador');  
@@ -267,7 +269,7 @@ const detalhesDaVaga = (event) =>{
             const pTituloDaVaga = document.getElementById('titulo-detalhe-vaga');
             const pDescricaoDeVaga = document.getElementById('descricao-detalhe-vaga');
             const pRemuneracao = document.getElementById('remuneracao-detalhe-vaga');
-            pTituloDaVaga.setAttribute('id',idDaVaga)
+            usuarioDoSite.push(idDaVaga);
             pTituloDaVaga.textContent = "Título:"+ arr.titulo;
             pDescricaoDeVaga.textContent = "Descrição:"+ arr.descricao;
             pRemuneracao.textContent = "Remuneração:"+ arr.remuneracao;
@@ -277,7 +279,7 @@ const detalhesDaVaga = (event) =>{
             const pTituloDaVaga = document.getElementById('titulo-detalhe-vaga-t');
             const pDescricaoDeVaga = document.getElementById('descricao-detalhe-vaga-t');
             const pRemuneracao = document.getElementById('remuneracao-detalhe-vaga-t');
-            pTituloDaVaga.setAttribute('id',idDaVaga);
+            usuarioDoSite.push(idDaVaga);
             pTituloDaVaga.textContent = "Título:"+ arr.titulo;
             pDescricaoDeVaga.textContent = "Descrição:"+ arr.descricao;
             pRemuneracao.textContent = "Remuneração:"+ arr.remuneracao;
@@ -291,9 +293,27 @@ const detalhesDaVaga = (event) =>{
 const funcaoRecarrega = () =>{
     document.location.reload(true);
 }
+// constructor(idVaga ,idCandidato,reprovado){
+//     this.idVaga = idVaga;
+//     this.idCandidato = idCandidato;
+//     this.reprovado = reprovado;
+// }
 const seCandidar = () =>{
-    const idDoP = document.getElementById(idDoParagrafo);
-    alert(idDoP);    
+    const btnCadastrar = document.getElementById('btn-cadastro');
+    const instaciaVaga = new Candidatura(usuarioDoSite[1],usuarioDoSite[0],false);
+    usuarioArray.push(instaciaVaga);
+    axios.put(`http://localhost:3000/Usuarios/`)
+    .then((success) =>{
+        sucess.data.forEach((element) => {
+            if(element.id === usuarioDoSite[1]){
+                element.candidaturas.push(instaciaVaga);
+            }    
+        })
+        
+    }
+    ).catch((erro)=>{
+        console.log('Ocorreu um erro')
+    })
 }
 
   // AQUI PARA BAIXO SÃO SÓ EXEMPLOS DE COMO UTILIZAR O AXIOS
