@@ -195,6 +195,8 @@ const cadastrarVagas = () =>{
     }
 }
 
+
+
   // AQUI PARA BAIXO SÃO SÓ EXEMPLOS DE COMO UTILIZAR O AXIOS
     // // PARA PUT E DELETE PRECISAMOS PASSAR TAMBÉM UM ID 
     // axios.put(`http://localhost:3000/colaboradores/1`, colaboradorAlterado)
