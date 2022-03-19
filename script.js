@@ -10,7 +10,6 @@ class Usuario{
       senha; 
       candidatura;
 
-
     constructor(tipo ,nome,dataNascimento,email,senha){
         this.tipo = tipo;
         this.nome = nome;
@@ -37,7 +36,7 @@ class Vaga {
     remuneracao;
     candidatos = [];
 
-    constructor(titulo , descrição , remuneracao){
+    constructor(titulo , descricao, remuneracao){
         this.titulo = titulo;
         this.descricao = descricao;
         this.remuneracao = remuneracao;
@@ -49,7 +48,7 @@ var booleanDoEmail = false;
 var booleanDoData = false;
 var booleanDaSenha = false;
 var booleanNome = false;
-const usuarioDoSite = [];
+let usuarioDoSite = [];
 var usuarioArray = [];
 const validarEmail = (event) => {
     
@@ -170,7 +169,7 @@ const esqueciSenha = () =>{
     const emailLog = document.getElementById('email-input-login').value;
     const senhaLog = document.getElementById('password-input-login').value;
     let funcaoDoUsuario = '';
-    axios.get('http://localhost:3000/Usuarios')
+    axios.get(`http://localhost:3000/Usuarios`)
     .then((sucesso) =>{
         sucesso.data.forEach(element => {
             if(emailLog === element.email && regulaFunc){
@@ -211,15 +210,15 @@ const cadastrarVagas = (event) =>{
         })
     }
 }
-{/* <div class="d-flex justify-content-between w-75 border border-secondary rounded p-3" id="div-id1" >
+/* <div class="d-flex justify-content-between w-75 border border-secondary rounded p-3" id="div-id1" >
                     <div>
                         <span class="fw-bold">Título: Desenvolvedor Full-stack</span>
                     </div>
                     <div>
                         <span class="fw-bold">Remuneração</span><span>: R$ 5.500,00</span>
                     </div>
-</div> */}
-const mostrarVagas = () =>{
+</div> */
+const mostrarVagas = () => {
     const listaDeVagas = trabalhador?document.getElementById('vagas-lista-trabalhador'):document.getElementById('vagas-lista-recrutador')
     axios.get('http://localhost:3000/Vagas')
     .then((sucess) =>{
@@ -258,17 +257,17 @@ const mostrarVagas = () =>{
 //                     Doloremque, nemo necessitatibus eligendi iste</p>
 //                 <p id="remuneracao-detalhe-vaga">Remuneração: </p>
 const detalhesDaVaga = (event) =>{
-   
     let idDaVaga = event.target.id;
     usuarioDoSite.push(idDaVaga);
-    axios.get('http://localhost:3000/Vagas')
-    .then((sucess) =>{
+    axios.get(`http://localhost:3000/Vagas`)
+    .then((sucess) => {
         let arr = sucess.data.find((element)=>{
-         return element.id == idDaVaga;
+           return element.id === parseInt(idDaVaga);
         })
+        console.log(arr)
+
         if(recrutador){
             redirecionaPag('tela-inicial-recrutador','tela-de-detalhe-recrutador');
-
             const pTituloDaVaga = document.getElementById('titulo-detalhe-vaga');
             const pDescricaoDeVaga = document.getElementById('descricao-detalhe-vaga');
             const pRemuneracao = document.getElementById('remuneracao-detalhe-vaga');
@@ -291,6 +290,7 @@ const detalhesDaVaga = (event) =>{
         console.log('Ops , ocorreu um erro')
     })
 }
+
 const funcaoRecarrega = () =>{
     document.location.reload(true);
 }
@@ -299,21 +299,47 @@ const funcaoRecarrega = () =>{
 //     this.idCandidato = idCandidato;
 //     this.reprovado = reprovado;
 // }
-    const seCandidar = async () =>{
+// const seCandidar = async () => {
+//     const btnCadastrar = document.getElementById('btn-cadastro');
+//     const instaciaVaga = new Candidatura(usuarioDoSite[1],usuarioDoSite[0],false);
+//     usuarioArray.push(instaciaVaga);
+//     let temp = await axios.get(`http://localhost:3000/Usuarios/${usuarioDoSite[1]}`) 
+//         .then((sucess) => {
+//             let tempAlgumacoisa = sucess.data.candidaturas
+//             tempAlgumacoisa.push(usuarioArray)
+//             console.log(sucess.data)
+//             })
+//     axios.put(`http://localhost:3000/Usuarios/${usuarioDoSite[1]}`, temp)
+//     .then((success) =>{
+//         alert('Sucesso! Candidatura aceita')
+
+const seCandidar = async () =>{
         const btnCadastrar = document.getElementById('btn-cadastro');
-      
-        await axios.get(`http://localhost:3000/Usuarios/${usuarioDoSite[0]}`) 
+        console.log(usuarioDoSite[0])
+        console.log(usuarioDoSite[1])
+        let retornoUsuarioComCandidatura = {}
+        let temp = await axios.get(`http://localhost:3000/Usuarios/${usuarioDoSite[0]}`) 
             .then((success) => {
                     const instaciaVaga = new Candidatura(usuarioDoSite[1],usuarioDoSite[0],false);
-                    let candidaturaTeste = [];
-                    candidaturaTeste.push(instaciaVaga);
-                    let listaArrayTeste = { usuario:[success.data] };
-                    listaArrayTeste.candidatura = {candidatura:[candidaturaTeste]};
-                    console.log(candidaturaTeste)
-                    console.log(listaArrayTeste);
+                    let dadosUsuario = success.data;
+                    success.data.candidatura = instaciaVaga
+                    let dadosUsuarioECandidatura = [];
+                    dadosUsuarioECandidatura.push(success.data.candidatura);
+                    if(dadosUsuarioECandidatura.length === 0) {
+                        retornoUsuarioComCandidatura = { ...dadosUsuario, candidatura: dadosUsuarioECandidatura };
+                    } else {
+                        retornoUsuarioComCandidatura = { ...dadosUsuario, ...dadosUsuarioECandidatura };
+                        
+                    }
+                    console.log(retornoUsuarioComCandidatura);
+                    
                 })
             
-    }
+            axios.put(`http://localhost:3000/Usuarios/${usuarioDoSite[0]}`, retornoUsuarioComCandidatura)
+                .then((success) =>{
+                    alert('Sucesso! Candidatura aceita')
+                })
+}
     // const candidaturaDoUsuario = {candidatura: instaciaVaga};
     // axios.put(`http://localhost:3000/Usuarios/${usuarioDoSite[0]}`,candidaturaDoUsuario)
     // .then((success) =>{
