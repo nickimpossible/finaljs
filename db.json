@@ -1,199 +1,100 @@
 {
   "Usuarios": [
     {
-      "tipo": "Trabalhador",
-      "nome": "tger",
-      "dataNascimento": "30/10/2003",
+      "candidatura": {
+        "idVaga": "1",
+        "idCandidato": 1,
+        "reprovado": false
+      },
+      "id": 1
+    },
+    { 
+      "tipo": "Recrutador",
+      "nome": "Paulo",
+      "dataNascimento": "20/12/2002",
       "email": "paulo@dbccompany.com",
-      "senha": "teasrertwew123324W2!",
-      "candidaturas": [],
+      "senha": "teasr3232e@rtwew123324W2!",
+      "id": 2
+    },
+    {
+      "candidatura": {
+        "idVaga": "1",
+        "idCandidato": 3,
+        "reprovado": false
+      },
       "id": 3
     },
     {
       "tipo": "Trabalhador",
-      "nome": "Nome ",
-      "dataNascimento": "30/10/2003",
-      "email": "paulo@dbccompany.com",
-      "senha": "tesadas@WWw1",
-      "candidaturas": [],
+      "nome": "Thais",
+      "dataNascimento": "10/10/2002",
+      "email": "thais@dbccompany.com",
+      "senha": "teasr3232e@rtwew123324W2!",
       "id": 4
     },
     {
       "tipo": "Trabalhador",
-      "nome": "Paulo",
+      "nome": "w",
       "dataNascimento": "30/10/2003",
-      "email": "paulo@dbccompany.com",
-      "senha": "teasrertwew123324W2!",
-      "candidaturas": [],
+      "email": "joao@dbccompany.com",
+      "senha": "teste2112234\"!",
+      "candidatura": null,
       "id": 5
     },
     {
-      "titulo": "Teste",
-      "descrição": "3223",
-      "remuneracao": "Um produto legal",
+      "0": {
+        "tipo": "Trabalhador",
+        "nome": "thaisthais",
+        "dataNascimento": "30/10/2003",
+        "email": "thaisthais@dbccompany.com",
+        "senha": "31293128!Ww",
+        "candidatura": [],
+        "id": 6
+      },
       "id": 6
     },
     {
-      "titulo": "dsds",
-      "descrição": "323223",
-      "remuneracao": "dsdss",
+      "usuario": [
+        {
+          "tipo": "Trabalhador",
+          "nome": "testesda",
+          "dataNascimento": "30/10/2003",
+          "email": "tstes@dbccompany.com",
+          "senha": "teasr3232e@rtwew123324W2!",
+          "candidatura": [],
+          "id": 7
+        }
+      ],
+      "candidatura": {
+        "candidatura": [
+          [
+            {
+              "idVaga": "",
+              "idCandidato": 7,
+              "reprovado": false
+            }
+          ]
+        ]
+      },
       "id": 7
     },
     {
-      "titulo": "ewew",
-      "descrição": "121",
-      "remuneracao": "ewew",
-      "candidatos": [],
-      "id": 8
-    },
-    {
-      "tipo": "Recrutador",
-      "nome": "Joao",
-      "dataNascimento": "10/10/2002",
-      "email": "joao@dbccompany.com",
-      "senha": "teasrertwew123324W2!",
-      "candidaturas": [],
-      "id": 9
-    },
-    {
-      "id": 10
-    },
-    {
       "tipo": "Trabalhador",
-      "nome": "joaozinho",
-      "dataNascimento": "12/10/1997",
-      "email": "joaozinho@dbccompany.com",
-      "senha": "123vaidarCerto!",
-      "candidaturas": [],
-      "id": 11
+      "nome": "gustavo",
+      "dataNascimento": "12/01/2001",
+      "email": "gustavo@dbccompany.com",
+      "senha": "123Wer!!!",
+      "candidatura": [],
+      "id": 8
     }
   ],
   "Vagas": [
     {
-      "titulo": "teste",
-      "descrição": "teste",
-      "remuneracao": "2",
+      "titulo": "Full Stack",
+      "descrição": "exerce back end , front end",
+      "remuneracao": "R$300000",
       "candidatos": [],
       "id": 1
-    },
-    {
-      "titulo": "teste",
-      "descrição": "teste",
-      "remuneracao": "22",
-      "candidatos": [],
-      "id": 2
-    },
-    {
-      "titulo": "teste",
-      "descrição": "teste",
-      "remuneracao": "R$1200",
-      "candidatos": [],
-      "id": 3
-    },
-    {
-      "titulo": "teste",
-      "descrição": "teste",
-      "remuneracao": "R$<tt>1200</tt>",
-      "candidatos": [],
-      "id": 4
-    },
-    {
-      "titulo": "teste",
-      "descrição": "testes",
-      "remuneracao": "R$1200,00",
-      "candidatos": [],
-      "id": 5
-    },
-    {
-      "titulo": "teste",
-      "descrição": "teste",
-      "remuneracao": "R$1200,00",
-      "candidatos": [],
-      "id": 6
-    },
-    {
-      "titulo": "teste",
-      "descrição": "teste",
-      "remuneracao": "R$-2",
-      "candidatos": [],
-      "id": 7
-    },
-    {
-      "titulo": "teste",
-      "descrição": "teste",
-      "remuneracao": "R$-2",
-      "candidatos": [],
-      "id": 8
-    },
-    {
-      "titulo": "teste",
-      "descrição": "teste",
-      "remuneracao": "R$-2",
-      "candidatos": [],
-      "id": 9
-    },
-    {
-      "titulo": "teste",
-      "descrição": "teste",
-      "remuneracao": "R$-2",
-      "candidatos": [],
-      "id": 10
-    },
-    {
-      "titulo": "teste",
-      "descrição": "teste",
-      "remuneracao": "R$-2",
-      "candidatos": [],
-      "id": 11
-    },
-    {
-      "titulo": "teste",
-      "descrição": "teste",
-      "remuneracao": "R$-2",
-      "candidatos": [],
-      "id": 12
-    },
-    {
-      "titulo": "teste",
-      "descrição": "teste",
-      "remuneracao": "R$1200,00",
-      "candidatos": [],
-      "id": 13
-    },
-    {
-      "titulo": "teste",
-      "descrição": "teste",
-      "remuneracao": "R$1200,00",
-      "candidatos": [],
-      "id": 14
-    },
-    {
-      "titulo": "teste",
-      "descrição": "teste",
-      "remuneracao": "R$1200,00",
-      "candidatos": [],
-      "id": 15
-    },
-    {
-      "titulo": "teste",
-      "descrição": "teste",
-      "remuneracao": "R$1200,00",
-      "candidatos": [],
-      "id": 16
-    },
-    {
-      "titulo": "teste",
-      "descrição": "te121",
-      "remuneracao": "R$2131232",
-      "candidatos": [],
-      "id": 17
-    },
-    {
-      "titulo": "2",
-      "descrição": 1,
-      "remuneracao": false,
-      "candidatos": [],
-      "id": 18
     }
   ]
 }
