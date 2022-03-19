@@ -1,80 +1,81 @@
 {
   "Usuarios": [
     {
-      "candidatura": {
-        "idVaga": "1",
-        "idCandidato": 1,
-        "reprovado": false
-      },
+      "tipo": "Recrutador",
+      "nome": "jao da silva",
+      "dataNascimento": "12/10/1997",
+      "email": "jao@dbccompany.com",
+      "senha": "123vaidarCerto!",
+      "candidatura": [],
       "id": 1
     },
     {
-      "tipo": "Recrutador",
-      "nome": "Paulo",
-      "dataNascimento": "20/12/2002",
-      "email": "paulo@dbccompany.com",
-      "senha": "teasr3232e@rtwew123324W2!",
+      "usuario": {
+        "tipo": "Trabalhador",
+        "nome": "tiago da silva",
+        "dataNascimento": "12/10/1997",
+        "email": "tiago@dbccompany.com",
+        "senha": "123vaidarCerto!",
+        "candidatura": 1,
+        "id": 2
+      },
       "id": 2
     },
     {
-      "candidatura": {
-        "idVaga": "1",
-        "idCandidato": 3,
-        "reprovado": false
+      "usuario": {
+        "tipo": "Trabalhador",
+        "nome": "qqrcoisa",
+        "dataNascimento": "12/10/1997",
+        "email": "q@dbccompany.com",
+        "senha": "123vaidarCerto!",
+        "candidatura": 1,
+        "id": 3
       },
       "id": 3
     },
     {
+      "usuario": {
+        "tipo": "Trabalhador",
+        "nome": "cansei",
+        "dataNascimento": "12/10/1997",
+        "email": "cansei@dbccompany.com",
+        "senha": "123vaidarCerto!",
+        "candidatura": 1,
+        "id": 4
+      },
       "id": 4
     },
     {
-      "tipo": "Trabalhador",
-      "nome": "w",
-      "dataNascimento": "30/10/2003",
-      "email": "joao@dbccompany.com",
-      "senha": "teste2112234\"!",
-      "candidatura": null,
+      "usuario": {
+        "tipo": "Trabalhador",
+        "nome": "issoaq",
+        "dataNascimento": "12/10/1997",
+        "email": "i@dbccompany.com",
+        "senha": "123vaidarCerto!",
+        "candidatura": 1,
+        "id": 5
+      },
       "id": 5
     },
     {
-      "0": {
-        "tipo": "Trabalhador",
-        "nome": "thaisthais",
-        "dataNascimento": "30/10/2003",
-        "email": "thaisthais@dbccompany.com",
-        "senha": "31293128!Ww",
-        "candidatura": [],
-        "id": 6
+      "tipo": "Trabalhador",
+      "nome": "Thais",
+      "dataNascimento": "12/10/1997",
+      "email": "t@dbccompany.com",
+      "senha": "123vaidarCerto!",
+      "candidatura": {
+        "idVaga": "",
+        "idCandidato": 6,
+        "reprovado": false
       },
       "id": 6
-    },
-    {
-      "usuario": [
-        {
-          "tipo": "Trabalhador",
-          "nome": "joaozinhodasilva",
-          "dataNascimento": "12/10/1997",
-          "email": "joaozinho@dbccompany.com",
-          "senha": "123vaidarCerto!",
-          "candidatura": [
-            {
-              "idVaga": "",
-              "idCandidato": 12,
-              "reprovado": false
-            }
-          ],
-          "id": 12
-        },
-        1
-      ],
-      "id": 12
     }
   ],
   "Vagas": [
     {
-      "titulo": "Full Stack",
-      "descrição": "exerce back end , front end",
-      "remuneracao": "R$300000",
+      "titulo": "Dev Senior",
+      "descrição": "Melhor vaga de todos os tempos",
+      "remuneracao": "R$50000",
       "candidatos": [],
       "id": 1
     }

@@ -48,7 +48,7 @@ var booleanDoEmail = false;
 var booleanDoData = false;
 var booleanDaSenha = false;
 var booleanNome = false;
-const usuarioDoSite = [];
+let usuarioDoSite = [];
 var usuarioArray = [];
 const validarEmail = (event) => {
     
@@ -169,7 +169,7 @@ const esqueciSenha = () =>{
     const emailLog = document.getElementById('email-input-login').value;
     const senhaLog = document.getElementById('password-input-login').value;
     let funcaoDoUsuario = '';
-    axios.get('http://localhost:3000/Usuarios')
+    axios.get(`http://localhost:3000/Usuarios`)
     .then((sucesso) =>{
         sucesso.data.forEach(element => {
             if(emailLog === element.email && regulaFunc){
@@ -260,14 +260,13 @@ const detalhesDaVaga = (event) =>{
    
     let idDaVaga = event.target.id;
     usuarioDoSite.push(idDaVaga);
-    axios.get('http://localhost:3000/Vagas')
+    axios.get(`http://localhost:3000/Vagas`)
     .then((sucess) =>{
         let arr = sucess.data.find((element)=>{
-         return element.id == idDaVaga;
+            return element.id == idDaVaga;
         })
         if(recrutador){
             redirecionaPag('tela-inicial-recrutador','tela-de-detalhe-recrutador');
-
             const pTituloDaVaga = document.getElementById('titulo-detalhe-vaga');
             const pDescricaoDeVaga = document.getElementById('descricao-detalhe-vaga');
             const pRemuneracao = document.getElementById('remuneracao-detalhe-vaga');
@@ -315,13 +314,18 @@ const funcaoRecarrega = () =>{
 
 const seCandidar = async () =>{
         const btnCadastrar = document.getElementById('btn-cadastro');
+        console.log(usuarioDoSite[0])
+        console.log(usuarioDoSite[1])
         let retornoUsuarioComCandidatura = {}
         let temp = await axios.get(`http://localhost:3000/Usuarios/${usuarioDoSite[0]}`) 
             .then((success) => {
                     const instaciaVaga = new Candidatura(usuarioDoSite[1],usuarioDoSite[0],false);
+                    let dadosUsuario = success.data;
+                    success.data.candidatura = instaciaVaga
+                    let dadosUsuarioECandidatura = success.data.candidatura
                     // let candidaturaTeste = [];
                     // candidaturaTeste.push(instaciaVaga);
-                    retornoUsuarioComCandidatura = { usuario:[success.data, success.data.candidatura.push(instaciaVaga)]};
+                    retornoUsuarioComCandidatura = { ...dadosUsuario, candidatura: dadosUsuarioECandidatura };
                     //retornoUsuarioComCandidatura.candidatura = {candidatura: instaciaVaga};
                     console.log(retornoUsuarioComCandidatura);
                 })
