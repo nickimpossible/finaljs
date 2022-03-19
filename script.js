@@ -333,8 +333,8 @@ const seCandidar = async () =>{
                     let dadosUsuario = success.data;
 
                     // success.data.candidatura = vagaComInstacia;
-                    retornoUsuarioComCandidatura = { ...dadosUsuario, candidatura: vagaComInstacia };
-                    console.log(retornoUsuarioComCandidatura);
+                    retornoUsuarioComCandidatura = { ...dadosUsuario };
+                    retornoUsuarioComCandidatura.candidatura.push(instaciaVaga);
                     
                 })
             axios.put(`http://localhost:3000/Usuarios/${usuarioDoSite[0]}`, retornoUsuarioComCandidatura)
