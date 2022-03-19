@@ -33,13 +33,13 @@ class Candidatura {
 
 class Vaga {
     titulo;
-    descrição;
+    descricao;
     remuneracao;
     candidatos = [];
 
     constructor(titulo , descrição , remuneracao){
         this.titulo = titulo;
-        this.descrição = descrição;
+        this.descricao = descricao;
         this.remuneracao = remuneracao;
         
     }
