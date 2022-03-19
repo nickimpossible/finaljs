@@ -68,12 +68,53 @@
       "dataNascimento": "12/10/1997",
       "email": "t@dbccompany.com",
       "senha": "123vaidarCerto!",
-      "candidatura": {
-        "idVaga": "3",
-        "idCandidato": 6,
-        "reprovado": false
-      },
+      "candidatura": "[object Object][object Object]",
       "id": 6
+    },
+    {
+      "tipo": "Trabalhador",
+      "nome": "pedro",
+      "dataNascimento": "05/02/2001",
+      "email": "pedro@dbccompany.com",
+      "senha": "teDasr3232e@rtwew123324W2!",
+      "candidatura": [
+        {
+          "idVaga": "3",
+          "idCandidato": 7,
+          "reprovado": false
+        }
+      ],
+      "id": 7
+    },
+    {
+      "tipo": "Trabalhador",
+      "nome": "Oracle",
+      "dataNascimento": "10/10/20003",
+      "email": "oracle@dbccompany.com",
+      "senha": "13W2w@!w",
+      "candidatura": [
+        {
+          "idVaga": "3",
+          "idCandidato": 8,
+          "reprovado": false
+        }
+      ],
+      "id": 8
+    },
+    {
+      "tipo": "Trabalhador",
+      "nome": "Kleber",
+      "dataNascimento": "10/10/2003",
+      "email": "kleber@dbccompany.com",
+      "senha": "owWk!!swW2",
+      "candidatura": [
+        {
+          "idVaga": "3",
+          "idCandidato": 9,
+          "reprovado": false
+        }
+      ],
+      "id": 9
     }
   ],
   "Vagas": [

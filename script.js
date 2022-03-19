@@ -317,24 +317,20 @@ const seCandidar = async () =>{
         const btnCadastrar = document.getElementById('btn-cadastro');
         console.log(usuarioDoSite[0])
         console.log(usuarioDoSite[1])
-        let retornoUsuarioComCandidatura = {}
+        let retornoUsuarioComCandidatura = [];
         let temp = await axios.get(`http://localhost:3000/Usuarios/${usuarioDoSite[0]}`) 
             .then((success) => {
+                    
                     const instaciaVaga = new Candidatura(usuarioDoSite[1],usuarioDoSite[0],false);
+                    let vagaComInstacia = [];
+                    vagaComInstacia.push(instaciaVaga)
                     let dadosUsuario = success.data;
-                    success.data.candidatura = instaciaVaga
-                    let dadosUsuarioECandidatura = [];
-                    dadosUsuarioECandidatura.push(success.data.candidatura);
-                    if(dadosUsuarioECandidatura.length === 0) {
-                        retornoUsuarioComCandidatura = { ...dadosUsuario, candidatura: dadosUsuarioECandidatura };
-                    } else {
-                        retornoUsuarioComCandidatura = { ...dadosUsuario, ...dadosUsuarioECandidatura };
-                        
-                    }
+
+                    // success.data.candidatura = vagaComInstacia;
+                    retornoUsuarioComCandidatura = { ...dadosUsuario, candidatura: vagaComInstacia };
                     console.log(retornoUsuarioComCandidatura);
                     
                 })
-            
             axios.put(`http://localhost:3000/Usuarios/${usuarioDoSite[0]}`, retornoUsuarioComCandidatura)
                 .then((success) =>{
                     alert('Sucesso! Candidatura aceita')
