@@ -1,4 +1,5 @@
 
+
 //json-server --watch db.json
 const arrayDosFuncionario = [];
 class Usuario{
@@ -319,6 +320,8 @@ const funcaoRecarrega = () =>{
     //    console.log(success.data)
     //     })    
 // ECMAScript - async await
+
+
 
 
   // AQUI PARA BAIXO SÃO SÓ EXEMPLOS DE COMO UTILIZAR O AXIOS
