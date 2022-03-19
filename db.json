@@ -87,6 +87,37 @@
       "id": 7
     },
     {
+      "0": {
+        "idVaga": "2",
+        "idCandidato": 8,
+        "reprovado": false
+      },
+      "id": 8
+    },
+    {
+      "0": {
+        "tipo": "Trabalhador",
+        "nome": "koi",
+        "dataNascimento": "10/10/2002",
+        "email": "koi@dbccompany.com",
+        "senha": "teasr3232e@rtwew123324W2!",
+        "candidatura": [
+          {
+            "idVaga": "2",
+            "idCandidato": 9,
+            "reprovado": false
+          },
+          {
+            "idVaga": "1",
+            "idCandidato": 9,
+            "reprovado": false
+          }
+        ],
+        "id": 9
+      },
+      "id": 9
+    },
+    {
       "tipo": "Trabalhador",
       "nome": "chocolate",
       "dataNascimento": "12/10/1997",

@@ -51,8 +51,7 @@ var usuarioArray = [];
 const validarEmail = (event) => {
 
     const email = event.target.value;
-    console.log(email);
-    let arrEmail = [...email]
+    let arrEmail = [...email] 
     //let validaPrimeiraLetra = (email[0] === email[0].toLowerCase())  ? false : true;
     let validaArroba = arrEmail.some(x => x === '@');
     let validaPontoDepoisDoArroba = arrEmail.slice('@').some(x => x === '.');
@@ -141,26 +140,23 @@ const loginNoSistema = () => {
     const senhaLog = document.getElementById('password-input-login').value;
     let funcaoDoUsuario = '';
     axios.get('http://localhost:3000/Usuarios')
-        .then((sucesso) => {
-            sucesso.data.forEach(element => {
-                if (emailLog === element.email && senhaLog === element.senha) {
-                    loginValid = true;
-                    funcaoDoUsuario = element.tipo;
-                    console.log(loginValid);
-                    console.log(funcaoDoUsuario);
-                    usuarioDoSite.push(element.id);
-                    if (funcaoDoUsuario === 'Trabalhador') {
-                        trabalhador = true;
-                        redirecionaPag('tela-de-login', 'tela-inicial-trabalhador');
-                        mostrarVagas();
-                    } else if (funcaoDoUsuario === 'Recrutador') {
-                        recrutador = true;
-                        redirecionaPag('tela-de-login', 'tela-inicial-recrutador');
-                        mostrarVagas();
-                    }
+    .then((sucesso) =>{
+        sucesso.data.forEach(element => {
+            if(emailLog === element.email && senhaLog === element.senha){
+                loginValid = true;
+                funcaoDoUsuario = element.tipo;
+                usuarioDoSite.push(element.id);}
+                if(funcaoDoUsuario === 'Trabalhador'){ 
+                    trabalhador = true;
+                    redirecionaPag('tela-de-login','tela-inicial-trabalhador');  
+                    mostrarVagas();
+                }else if(funcaoDoUsuario === 'Recrutador'){
+                    recrutador = true;
+                    redirecionaPag('tela-de-login','tela-inicial-recrutador');   
+                    mostrarVagas();
                 }
-            });
-        }
+            }
+        )}
         ).catch((reject) => {
             console.log('ops!Um erro foi encontrado')
         }
@@ -264,35 +260,34 @@ const detalhesDaVaga = (event) => {
     let idDaVaga = event.target.id;
     usuarioDoSite.push(idDaVaga);
     axios.get(`http://localhost:3000/Vagas`)
-        .then((sucess) => {
-            let arr = sucess.data.find((element) => {
-                return element.id === parseInt(idDaVaga);
-            })
-            console.log(arr)
-
-            if (recrutador) {
-                redirecionaPag('tela-inicial-recrutador', 'tela-de-detalhe-recrutador');
-                const pTituloDaVaga = document.getElementById('titulo-detalhe-vaga');
-                const pDescricaoDeVaga = document.getElementById('descricao-detalhe-vaga');
-                const pRemuneracao = document.getElementById('remuneracao-detalhe-vaga');
-                pTituloDaVaga.textContent = "Título:" + arr.titulo;
-                pDescricaoDeVaga.textContent = "Descrição:" + arr.descricao;
-                pRemuneracao.textContent = "Remuneração:" + arr.remuneracao;
-            }
-            if (trabalhador) {
-                redirecionaPag('tela-inicial-trabalhador', 'tela-de-detalhe-trabalhador');
-                const pTituloDaVaga = document.getElementById('titulo-detalhe-vaga-t');
-                const pDescricaoDeVaga = document.getElementById('descricao-detalhe-vaga-t');
-                const pRemuneracao = document.getElementById('remuneracao-detalhe-vaga-t');
-                pTituloDaVaga.textContent = "Título:" + arr.titulo;
-                pDescricaoDeVaga.textContent = "Descrição:" + arr.descricao;
-                pRemuneracao.textContent = "Remuneração:" + arr.remuneracao;
-            }
-
-
-        }).catch((erro) => {
-            console.log('Ops , ocorreu um erro')
+    .then((sucess) => {
+        let arr = sucess.data.find((element)=>{
+           return element.id === parseInt(idDaVaga);
         })
+        console.log(arr);
+        if(recrutador){
+            redirecionaPag('tela-inicial-recrutador','tela-de-detalhe-recrutador');
+            const pTituloDaVaga = document.getElementById('titulo-detalhe-vaga');
+            const pDescricaoDeVaga = document.getElementById('descricao-detalhe-vaga');
+            const pRemuneracao = document.getElementById('remuneracao-detalhe-vaga');
+            pTituloDaVaga.textContent = "Título:"+ arr.titulo;
+            pDescricaoDeVaga.textContent = "Descrição:"+ arr.descricao;
+            pRemuneracao.textContent = "Remuneração:"+ arr.remuneracao;
+        }
+        if(trabalhador){
+            redirecionaPag('tela-inicial-trabalhador','tela-de-detalhe-trabalhador');
+            const pTituloDaVaga = document.getElementById('titulo-detalhe-vaga-t');
+            const pDescricaoDeVaga = document.getElementById('descricao-detalhe-vaga-t');
+            const pRemuneracao = document.getElementById('remuneracao-detalhe-vaga-t');
+            pTituloDaVaga.textContent = "Título:"+ arr.titulo;
+            pDescricaoDeVaga.textContent = "Descrição:"+ arr.descricao;
+            pRemuneracao.textContent = "Remuneração:"+ arr.remuneracao;
+        }
+        
+        
+    }).catch((erro)=>{
+        console.log('Ops , ocorreu um erro')
+    })
 }
 
 const funcaoRecarrega = () => {
@@ -363,29 +358,32 @@ const seCandidar = async () => {
             console.log('Sucesso! Usuario cadastrado na vaga')
         })
 }
-const cancelarCandidatura = async () => {
+const cancelarCandidatura = async () =>{
     const btnCadastrar = document.getElementById('btn-cadastro');
     const btnSairCandidatura = document.getElementById('btn-sair-candidatura');
-    let retornoUsuarioComCandidatura = [];
-    await axios.get(`http://localhost:3000/Usuarios/${usuarioDoSite[0]}`)
-        .then((success) => {
-            let dadosUsuario = success.data;
-            // success.data.candidatura = vagaComInstacia;
-            let verificaVaga = dadosUsuario.candidatura.some((element) => element.idVaga === usuarioDoSite[1]);
-            retornoUsuarioComCandidatura = { ...dadosUsuario };
-            if (verificaVaga) {
-                retornoUsuarioComCandidatura.candidatura.remove(usuarioDoSite[1]);
+    let retornoUsuarioSemCandidatura = [];
+       await axios.get(`http://localhost:3000/Usuarios/${usuarioDoSite[0]}`) 
+            .then((success) => {
+                    
+                    let verificaVaga = [success.data.candidatura]
+        
+                    verificaVaga = verificaVaga.filter((element) => 
+                            parseInt(element.idVaga) != usuarioDoSite[1]
+                    );   
+                    let conteudo = {...success.data};
+                    conteudo.candidatura.
 
-            }
-            btnCadastrar.classList.toggle('d-none');
-            btnSairCandidatura.classList.toggle('d-none');
+                    console.log(retornoUsuarioSemCandidatura);
 
-        })
-    axios.put(`http://localhost:3000/Usuarios/${usuarioDoSite[0]}`, retornoUsuarioComCandidatura)
-        .then((success) => {
-            //teste
-        })
-
+                    btnCadastrar.classList.toggle('d-none');
+                    btnSairCandidatura.classList.toggle('d-none');
+                  
+  })
+            // axios.put(`http://localhost:3000/Usuarios/${usuarioDoSite[0]}`, retornoUsuarioSemCandidatura)
+            //     .then((success) =>{
+            //         //teste
+            //     })
+     
 
 }
 
