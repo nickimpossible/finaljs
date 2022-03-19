@@ -74,6 +74,15 @@
         "reprovado": false
       },
       "id": 6
+    },
+    {
+      "tipo": "Trabalhador",
+      "nome": "Thais Bertoldi",
+      "dataNascimento": "12/10/1997",
+      "email": "t@dbccompany.com",
+      "senha": "123vaidarCerto!",
+      "candidatura": [],
+      "id": 7
     }
   ],
   "Vagas": [
