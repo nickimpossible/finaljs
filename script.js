@@ -6,8 +6,9 @@ class Usuario{
       nome;
       dataNascimento;
       email;
-      senha;
-      candidaturas = []; 
+      senha; 
+      candidatura;
+
 
     constructor(tipo ,nome,dataNascimento,email,senha){
         this.tipo = tipo;
@@ -15,7 +16,7 @@ class Usuario{
         this.dataNascimento = dataNascimento;
         this.email = email;
         this.senha = senha;
-        
+        this.candidatura = [];
     }
 }
 class Candidatura {
@@ -258,6 +259,7 @@ const mostrarVagas = () =>{
 const detalhesDaVaga = (event) =>{
    
     let idDaVaga = event.target.id;
+    usuarioDoSite.push(idDaVaga);
     axios.get('http://localhost:3000/Vagas')
     .then((sucess) =>{
         let arr = sucess.data.find((element)=>{
@@ -269,7 +271,6 @@ const detalhesDaVaga = (event) =>{
             const pTituloDaVaga = document.getElementById('titulo-detalhe-vaga');
             const pDescricaoDeVaga = document.getElementById('descricao-detalhe-vaga');
             const pRemuneracao = document.getElementById('remuneracao-detalhe-vaga');
-            usuarioDoSite.push(idDaVaga);
             pTituloDaVaga.textContent = "Título:"+ arr.titulo;
             pDescricaoDeVaga.textContent = "Descrição:"+ arr.descricao;
             pRemuneracao.textContent = "Remuneração:"+ arr.remuneracao;
@@ -279,7 +280,6 @@ const detalhesDaVaga = (event) =>{
             const pTituloDaVaga = document.getElementById('titulo-detalhe-vaga-t');
             const pDescricaoDeVaga = document.getElementById('descricao-detalhe-vaga-t');
             const pRemuneracao = document.getElementById('remuneracao-detalhe-vaga-t');
-            usuarioDoSite.push(idDaVaga);
             pTituloDaVaga.textContent = "Título:"+ arr.titulo;
             pDescricaoDeVaga.textContent = "Descrição:"+ arr.descricao;
             pRemuneracao.textContent = "Remuneração:"+ arr.remuneracao;
@@ -298,23 +298,28 @@ const funcaoRecarrega = () =>{
 //     this.idCandidato = idCandidato;
 //     this.reprovado = reprovado;
 // }
-const seCandidar = () =>{
-    const btnCadastrar = document.getElementById('btn-cadastro');
-    const instaciaVaga = new Candidatura(usuarioDoSite[1],usuarioDoSite[0],false);
-    usuarioArray.push(instaciaVaga);
-    axios.put(`http://localhost:3000/Usuarios/`)
-    .then((success) =>{
-        sucess.data.forEach((element) => {
-            if(element.id === usuarioDoSite[1]){
-                element.candidaturas.push(instaciaVaga);
-            }    
-        })
-        
+    const seCandidar = async () =>{
+        const btnCadastrar = document.getElementById('btn-cadastro');
+      
+        await axios.get(`http://localhost:3000/Usuarios/${usuarioDoSite[0]}`) 
+            .then((success) => {
+                    const instaciaVaga = new Candidatura(usuarioDoSite[1],usuarioDoSite[0],false);
+                    let candidaturaTeste = [];
+                    candidaturaTeste.push(instaciaVaga);
+                    let listaArrayTeste = { usuario:[success.data] };
+                    listaArrayTeste.candidatura = {candidatura:[candidaturaTeste]};
+                    console.log(candidaturaTeste)
+                    console.log(listaArrayTeste);
+                })
+            
     }
-    ).catch((erro)=>{
-        console.log('Ocorreu um erro')
-    })
-}
+    // const candidaturaDoUsuario = {candidatura: instaciaVaga};
+    // axios.put(`http://localhost:3000/Usuarios/${usuarioDoSite[0]}`,candidaturaDoUsuario)
+    // .then((success) =>{
+    //    console.log(success.data)
+    //     })    
+// ECMAScript - async await
+
 
   // AQUI PARA BAIXO SÃO SÓ EXEMPLOS DE COMO UTILIZAR O AXIOS
     // // PARA PUT E DELETE PRECISAMOS PASSAR TAMBÉM UM ID 
