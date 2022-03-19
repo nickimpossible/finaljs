@@ -323,9 +323,16 @@ const seCandidar = async () =>{
                     const instaciaVaga = new Candidatura(usuarioDoSite[1],usuarioDoSite[0],false);
                     let dadosUsuario = success.data;
                     success.data.candidatura = instaciaVaga
-                    let dadosUsuarioECandidatura = success.data.candidatura;
-                    retornoUsuarioComCandidatura = { ...dadosUsuario, candidatura: dadosUsuarioECandidatura };
+                    let dadosUsuarioECandidatura = [];
+                    dadosUsuarioECandidatura.push(success.data.candidatura);
+                    if(dadosUsuarioECandidatura.length === 0) {
+                        retornoUsuarioComCandidatura = { ...dadosUsuario, candidatura: dadosUsuarioECandidatura };
+                    } else {
+                        retornoUsuarioComCandidatura = { ...dadosUsuario, ...dadosUsuarioECandidatura };
+                        
+                    }
                     console.log(retornoUsuarioComCandidatura);
+                    
                 })
             
             axios.put(`http://localhost:3000/Usuarios/${usuarioDoSite[0]}`, retornoUsuarioComCandidatura)

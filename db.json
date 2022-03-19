@@ -58,13 +58,18 @@
       "id": 5
     },
     {
+      "0": {
+        "idVaga": "3",
+        "idCandidato": 6,
+        "reprovado": false
+      },
       "tipo": "Trabalhador",
       "nome": "Thais",
       "dataNascimento": "12/10/1997",
       "email": "t@dbccompany.com",
       "senha": "123vaidarCerto!",
       "candidatura": {
-        "idVaga": "1",
+        "idVaga": "3",
         "idCandidato": 6,
         "reprovado": false
       },
@@ -85,6 +90,13 @@
       "remuneracao": "R$50000",
       "candidatos": [],
       "id": 2
+    },
+    {
+      "titulo": "Dev junior",
+      "descricao": "Esta nao é a melhor vaga, mas tá perfeita tambem",
+      "remuneracao": "R$2000",
+      "candidatos": [],
+      "id": 3
     }
   ]
 }
