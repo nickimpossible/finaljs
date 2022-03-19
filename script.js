@@ -61,6 +61,7 @@ const validarEmail = (event) => {
     let validaPontoNoFim = (arrEmail[arrEmail.length-1] === '.') ? false : true ;
     let validaDominio = arrEmail.join('').includes('dbccompany')?true:false;
     let testeDaFuncao = validaPrimeiraLetra && validaArroba && validaPontoDepoisDoArroba && validaPontoNoFim && validaDominio;
+    mensagemErro(testeDaFuncao, 'nome-erro')
     booleanDoEmail = testeDaFuncao;
 }
 const validarSenha = (event) => {
@@ -74,6 +75,7 @@ const validarSenha = (event) => {
     let possuiNumero = caracteresSenha.some( c => c.toUpperCase() === c.toLowerCase() && !isNaN(c));
     let peloMenosOito = senha.length >= 8;
     const ehValido = possuiLetraMinuscula && possuiLetraMaiuscula && possuiEspecial && possuiNumero && peloMenosOito;
+    mensagemErro(ehValido, 'nome-erro')
     booleanDoData = ehValido;
 }
 const adicionarMascaraData = (event) => {
@@ -92,16 +94,20 @@ const validarData = (data) => {
         let vinteEhSeisAnosAtras = moment().subtract(26 , 'years')
         let verificacaoIdade = (testaData.isBetween(vinteEhSeisAnosAtras , dezoitoAnosAtras))?true :false;
         const validadorGeralData = testaDataFutura && verificacaoIdade;
+        mensagemErro(validadorGeralData, 'nome-erro')
         booleanDaSenha = validadorGeralData;
     }
 const validaNome = (event) =>{
-    let nome = event.target.value;
-    let str = [...nome];
-    
-    let validaNomeArr = str.some(a => !isNaN(a));
-    let validaNomeParteDois = str.some(a => a.toLowerCase() === a.toUpperCase());
-    let validadorNome = !validaNomeArr && !validaNomeParteDois;
-    booleanNome = validadorNome;
+
+
+    const input = event ? event.target : document.getElementById('nome-input');
+    const nome = input.value;
+    let nomeSemEspaco = nome.replaceAll(' ', '')
+
+    let validaNomeArr = [...nomeSemEspaco]
+    let somenteLetras = validaNomeArr.every(el => el.toString().toLowerCase() !== el.toString().toUpperCase())
+    mensagemErro(somenteLetras, 'nome-erro')
+    booleanNome = somenteLetras;
 }
 const validarCadastro = (event) => {
     if( booleanDoEmail && booleanDoData && booleanDaSenha && booleanDaSenha){
@@ -394,3 +400,11 @@ const seCandidar = async () =>{
 
 
 
+const mensagemErro = (variavel, id) => {
+    let mensagemErro = document.getElementById(id);
+    if (!variavel) {
+        return mensagemErro.classList.remove('d-none')
+    } else {
+        mensagemErro.classList.add('d-none');
+    }
+}

@@ -73,6 +73,7 @@
     },
     {
       "tipo": "Trabalhador",
+<<<<<<< HEAD
       "nome": "pedro",
       "dataNascimento": "05/02/2001",
       "email": "pedro@dbccompany.com",
@@ -115,6 +116,14 @@
         }
       ],
       "id": 9
+=======
+      "nome": "Thais Bertoldi",
+      "dataNascimento": "12/10/1997",
+      "email": "t@dbccompany.com",
+      "senha": "123vaidarCerto!",
+      "candidatura": [],
+      "id": 7
+>>>>>>> e7ed0e7a462844c42d4101de5c40af31c6fabcc5
     }
   ],
   "Vagas": [
