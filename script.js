@@ -1,5 +1,4 @@
 
-
 //json-server --watch db.json
 const arrayDosFuncionario = [];
 class Usuario{
@@ -55,13 +54,13 @@ const validarEmail = (event) => {
     const email = event.target.value;
     console.log(email);
     let arrEmail = [...email] 
-    let validaPrimeiraLetra = (email[0] === email[0].toLowerCase())  ? true : false;
+    //let validaPrimeiraLetra = (email[0] === email[0].toLowerCase())  ? false : true;
     let validaArroba = arrEmail.some(x => x === '@' );
     let validaPontoDepoisDoArroba = arrEmail.slice('@').some(x => x === '.');
     let validaPontoNoFim = (arrEmail[arrEmail.length-1] === '.') ? false : true ;
     let validaDominio = arrEmail.join('').includes('dbccompany')?true:false;
-    let testeDaFuncao = validaPrimeiraLetra && validaArroba && validaPontoDepoisDoArroba && validaPontoNoFim && validaDominio;
-    mensagemErro(testeDaFuncao, 'nome-erro')
+    let testeDaFuncao = validaArroba && validaPontoDepoisDoArroba && validaPontoNoFim && validaDominio;
+    //mensagemErro(testeDaFuncao, 'email-registration-error')
     booleanDoEmail = testeDaFuncao;
 }
 const validarSenha = (event) => {
@@ -75,7 +74,7 @@ const validarSenha = (event) => {
     let possuiNumero = caracteresSenha.some( c => c.toUpperCase() === c.toLowerCase() && !isNaN(c));
     let peloMenosOito = senha.length >= 8;
     const ehValido = possuiLetraMinuscula && possuiLetraMaiuscula && possuiEspecial && possuiNumero && peloMenosOito;
-    mensagemErro(ehValido, 'nome-erro')
+    mensagemErro(ehValido, 'password-registration-error')
     booleanDoData = ehValido;
 }
 const adicionarMascaraData = (event) => {
@@ -94,7 +93,7 @@ const validarData = (data) => {
         let vinteEhSeisAnosAtras = moment().subtract(26 , 'years')
         let verificacaoIdade = (testaData.isBetween(vinteEhSeisAnosAtras , dezoitoAnosAtras))?true :false;
         const validadorGeralData = testaDataFutura && verificacaoIdade;
-        mensagemErro(validadorGeralData, 'nome-erro')
+        mensagemErro(validadorGeralData, 'date-registration-error')
         booleanDaSenha = validadorGeralData;
     }
 const validaNome = (event) =>{
@@ -106,7 +105,7 @@ const validaNome = (event) =>{
 
     let validaNomeArr = [...nomeSemEspaco]
     let somenteLetras = validaNomeArr.every(el => el.toString().toLowerCase() !== el.toString().toUpperCase())
-    mensagemErro(somenteLetras, 'nome-erro')
+    mensagemErro(somenteLetras, 'nome-error')
     booleanNome = somenteLetras;
 }
 const validarCadastro = (event) => {
@@ -318,9 +317,13 @@ const funcaoRecarrega = () =>{
 //     axios.put(`http://localhost:3000/Usuarios/${usuarioDoSite[1]}`, temp)
 //     .then((success) =>{
 //         alert('Sucesso! Candidatura aceita')
+var validaBtnCandidatura = false;
 
 const seCandidar = async () =>{
         const btnCadastrar = document.getElementById('btn-cadastro');
+        const btnSairCandidatura = document.getElementById('btn-sair-candidatura');
+        
+        
         console.log(usuarioDoSite[0])
         console.log(usuarioDoSite[1])
         let retornoUsuarioComCandidatura = [];
@@ -331,16 +334,47 @@ const seCandidar = async () =>{
                     let vagaComInstacia = [];
                     vagaComInstacia.push(instaciaVaga)
                     let dadosUsuario = success.data;
-
                     // success.data.candidatura = vagaComInstacia;
-                    retornoUsuarioComCandidatura = { ...dadosUsuario, candidatura: vagaComInstacia };
-                    console.log(retornoUsuarioComCandidatura);
-                    
+                    let verificaVaga = dadosUsuario.candidatura.some((element)=>element.idVaga === usuarioDoSite[1]);
+                    retornoUsuarioComCandidatura = { ...dadosUsuario };
+                    if(!verificaVaga){
+                        retornoUsuarioComCandidatura.candidatura.push(instaciaVaga);
+                        validaBtnCandidatura = true;
+                    }else{
+                        alert('Voce ja esta cadastrado nessa vaga deseja sair dela');
+                    }
+                    btnCadastrar.classList.toggle('d-none');
+                    btnSairCandidatura.classList.toggle('d-none');
                 })
             axios.put(`http://localhost:3000/Usuarios/${usuarioDoSite[0]}`, retornoUsuarioComCandidatura)
                 .then((success) =>{
-                    alert('Sucesso! Candidatura aceita')
+                    //teste
                 })
+}
+const cancelarCandidatura = () =>{
+    const btnCadastrar = document.getElementById('btn-cadastro');
+    const btnSairCandidatura = document.getElementById('btn-sair-candidatura');
+    let retornoUsuarioComCandidatura = [];
+        await axios.get(`http://localhost:3000/Usuarios/${usuarioDoSite[0]}`) 
+            .then((success) => {
+                    let dadosUsuario = success.data;
+                    // success.data.candidatura = vagaComInstacia;
+                    let verificaVaga = dadosUsuario.candidatura.some((element)=>element.idVaga === usuarioDoSite[1]);
+                    retornoUsuarioComCandidatura = { ...dadosUsuario };
+                    if(verificaVaga){
+                    retornoUsuarioComCandidatura.candidatura.remove(usuarioDoSite[1]);
+            
+                    }
+                    btnCadastrar.classList.toggle('d-none');
+                    btnSairCandidatura.classList.toggle('d-none');
+                  
+                })
+            axios.put(`http://localhost:3000/Usuarios/${usuarioDoSite[0]}`, retornoUsuarioComCandidatura)
+                .then((success) =>{
+                    //teste
+                })
+     
+
 }
     // const candidaturaDoUsuario = {candidatura: instaciaVaga};
     // axios.put(`http://localhost:3000/Usuarios/${usuarioDoSite[0]}`,candidaturaDoUsuario)
