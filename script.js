@@ -1,3 +1,4 @@
+
 //json-server --watch db.json
 const arrayDosFuncionario = [];
 class Usuario{
@@ -126,7 +127,8 @@ const cadastrarUsuario = () =>{
         console.log('Ops , um erro foi encontrado')
     })
 }
-
+var trabalhador = false;
+var recrutador = false;
 const loginNoSistema = () =>{
     let loginValid = false;
     const emailLog = document.getElementById('email-input-login').value;
@@ -140,6 +142,15 @@ const loginNoSistema = () =>{
                 funcaoDoUsuario = element.tipo;
                 console.log(loginValid);
                 console.log(funcaoDoUsuario);
+                if(funcaoDoUsuario === 'Trabalhador'){ 
+                    trabalhador = true;
+                    redirecionaPag('tela-de-login','tela-inicial-trabalhador');  
+                    mostrarVagas();
+                }else if(funcaoDoUsuario === 'Recrutador'){
+                    recrutador = true;
+                    redirecionaPag('tela-de-login','tela-inicial-recrutador');   
+                    mostrarVagas();
+                }
             }            
         });    
     }
@@ -147,6 +158,7 @@ const loginNoSistema = () =>{
         console.log('ops!Um erro foi encontrado')
     }
     )
+    
 }
 
 const esqueciSenha = () =>{
@@ -173,9 +185,9 @@ const redirecionaPag = (atual,direciona) =>{
     const pagDireciona = document.getElementById(direciona);
     pagAtual.classList.toggle('d-none');
     pagDireciona.classList.toggle('d-none');
-
 }
-const cadastrarVagas = () =>{
+const cadastrarVagas = (event) =>{
+    event.preventDefault();
     const tituloVaga = document.getElementById('titulo-input').value;
     const descricaoVaga = document.getElementById('descricao-input').value;
     let remunuceracaoVaga = document.getElementById('remuneracao-input').value;
@@ -188,11 +200,100 @@ const cadastrarVagas = () =>{
         axios.post('http://localhost:3000/Vagas' , instaciaVaga)
         .then((sucesso)=>{
              console.log('Vaga Cadastrada Com sucesso');
+             redirecionaPag('tela-cadastro-de-vaga','tela-inicial-recrutador');
         })
         .catch((erro) =>{
             console.log('Ops , não foi possível cadastrar a vaga');    
         })
     }
+}
+{/* <div class="d-flex justify-content-between w-75 border border-secondary rounded p-3" id="div-id1" >
+                    <div>
+                        <span class="fw-bold">Título: Desenvolvedor Full-stack</span>
+                    </div>
+                    <div>
+                        <span class="fw-bold">Remuneração</span><span>: R$ 5.500,00</span>
+                    </div>
+</div> */}
+const mostrarVagas = () =>{
+    const listaDeVagas = trabalhador?document.getElementById('vagas-lista-trabalhador'):document.getElementById('vagas-lista-recrutador')
+    axios.get('http://localhost:3000/Vagas')
+    .then((sucess) =>{
+        sucess.data.forEach((element)=>{
+            const divPai = document.createElement('div');
+            const divTitulo = document.createElement('div');
+            const divRemuneracao = document.createElement('div');
+            const spanTitulo = document.createElement('span');
+            const spanRemuneracao = document.createElement('span');
+
+            divPai.classList.add("d-flex", "justify-content-between", "w-90", "border", "border-secondary", "rounded", "p-3" , "mt-2" ,"list-group-item", "list-group-item-action","list-group-item-light");
+            divPai.setAttribute('id', element.id);
+            spanTitulo.classList.add('fw-bold');
+            spanRemuneracao.classList.add('fw-bold');
+            listaDeVagas.classList.add('w-75');
+           
+            spanTitulo.textContent = 'Título: ' + element.titulo;
+            spanRemuneracao.textContent = 'Remuneração: ' + element.remuneracao;
+            
+            divTitulo.append(spanTitulo);
+            divRemuneracao.append(spanRemuneracao);
+            divPai.append(divTitulo,divRemuneracao);
+            listaDeVagas.append(divPai);
+            divPai.addEventListener('click', detalhesDaVaga)
+
+        })
+    }
+    ).catch((erro)=>{
+        console.log('Ocorreu um erro')
+    }
+
+    )
+}
+// <p id="titulo-detalhe-vaga">Título: </p>
+//                 <p id="descricao-detalhe-vaga">Descrição: Lorem ipsum dolor sit amet consectetur adipisicing elit.
+//                     Doloremque, nemo necessitatibus eligendi iste</p>
+//                 <p id="remuneracao-detalhe-vaga">Remuneração: </p>
+const detalhesDaVaga = (event) =>{
+   
+    let idDaVaga = event.target.id;
+    axios.get('http://localhost:3000/Vagas')
+    .then((sucess) =>{
+        let arr = sucess.data.find((element)=>{
+         return element.id == idDaVaga;
+        })
+        if(recrutador){
+            redirecionaPag('tela-inicial-recrutador','tela-de-detalhe-recrutador');
+
+            const pTituloDaVaga = document.getElementById('titulo-detalhe-vaga');
+            const pDescricaoDeVaga = document.getElementById('descricao-detalhe-vaga');
+            const pRemuneracao = document.getElementById('remuneracao-detalhe-vaga');
+            pTituloDaVaga.setAttribute('id',idDaVaga)
+            pTituloDaVaga.textContent = "Título:"+ arr.titulo;
+            pDescricaoDeVaga.textContent = "Descrição:"+ arr.descricao;
+            pRemuneracao.textContent = "Remuneração:"+ arr.remuneracao;
+        }
+        if(trabalhador){
+            redirecionaPag('tela-inicial-trabalhador','tela-de-detalhe-trabalhador');
+            const pTituloDaVaga = document.getElementById('titulo-detalhe-vaga-t');
+            const pDescricaoDeVaga = document.getElementById('descricao-detalhe-vaga-t');
+            const pRemuneracao = document.getElementById('remuneracao-detalhe-vaga-t');
+            pTituloDaVaga.setAttribute('id',idDaVaga);
+            pTituloDaVaga.textContent = "Título:"+ arr.titulo;
+            pDescricaoDeVaga.textContent = "Descrição:"+ arr.descricao;
+            pRemuneracao.textContent = "Remuneração:"+ arr.remuneracao;
+        }
+        
+        
+    }).catch((erro)=>{
+        console.log('Ops , ocorreu um erro')
+    })
+}
+const funcaoRecarrega = () =>{
+    document.location.reload(true);
+}
+const seCandidar = () =>{
+    const idDoP = document.getElementById(idDoParagrafo);
+    alert(idDoP);    
 }
 
   // AQUI PARA BAIXO SÃO SÓ EXEMPLOS DE COMO UTILIZAR O AXIOS

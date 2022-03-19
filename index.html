@@ -16,7 +16,7 @@
 <body>
     <div class="h-100 flex-column d-flex align-items-center justify-content-center">
         <section id="tela-de-login"
-            class="w-50 pb-3 border border-secondary rounded flex-column d-flex align-items-center justify-content-center mt-5">
+            class="w-50 pb-3 border border-secondary rounded flex-column d-flex align-items-center justify-content-center mt-5 ">
             <div class="bg bg-secondary w-100 h-100 text-center p-2 text-white">
                 <span>Login do Sistema</span>
             </div>
@@ -86,42 +86,33 @@
                 <span>VAGAS</span>
             </div>
             <div class="d-flex flex-column w-100 align-items-center justify-content-center rounded mt-3">
-                <div class="d-flex justify-content-between w-75 border border-secondary rounded p-3">
-                    <div>
-                        <span class="fw-bold">Título</span><span>: Desenvolvedor Full-stack</span>
-                    </div>
-                    <div>
-                        <span class="fw-bold">Remuneração</span><span>: R$ 5.500,00</span>
-                    </div>
+                <div id="vagas-lista-trabalhador">
+                
                 </div>
                 <div class="d-grid gap-2 col-3 mx-auto">
-                    <button type="button" class="btn btn-secondary mt-3">Sair</button>
+                    <button type="button" class="btn btn-secondary mt-3" onclick="redirecionaPag('tela-inicial-trabalhador','tela-de-login'),funcaoRecarrega()">Sair</button>
                 </div>
             </div>
         </section>
         <section id="tela-inicial-recrutador"
             class="w-50 pb-3 border border-secondary rounded flex-column d-flex align-items-center justify-content-center d-none">
-            <div class="bg bg-secondary w-100 h-100 text-center p-2 text-white">
+            <div class="bg bg-secondary w-100 h-100 text-center p-2 text-white" >
                 <span>VAGAS</span>
             </div>
-            <div class="d-flex flex-column w-100 align-items-center justify-content-center rounded mt-3">
-                <div class="d-flex justify-content-between w-75 border border-secondary rounded p-3 mt-3">
-                    <div>
-                        <span class="fw-bold">Título</span><span>: Desenvolvedor Full-stack</span>
-                    </div>
-                    <div>
-                        <span class="fw-bold">Remuneração</span><span>: R$ 5.500,00</span>
-                    </div>
+            <div id="vagas-lista-recrutador">
+                
+            </div>
+            <div class="d-flex w-75 h-100 p-2 text-white d-flex justify-content-between mt-3 mb-3">
+                <div>
+                    <button type="button" class="btn btn-light border border-secondary" onclick="redirecionaPag('tela-inicial-recrutador','tela-de-login'), funcaoRecarrega()">Sair</button>
                 </div>
-
-                <div class="d-flex w-75 h-100 p-2 text-white d-flex justify-content-between mt-3 mb-3">
-                    <div>
-                        <button type="button" class="btn btn-light border border-secondary">Sair</button>
-                    </div>
-                    <div>
-                        <button type="button" class="btn btn-secondary">Cadastrar Vaga</button>
-                    </div>
+                <div>
+                    <button type="button" class="btn btn-secondary" onclick="redirecionaPag('tela-inicial-recrutador','tela-cadastro-de-vaga')">Cadastrar Vaga</button>
                 </div>
+            </div>
+            <!-- <div class="mt-5">
+                <button type="button" class="btn btn-secondary" onclick="redirecionaPag('tela-inicial-recrutador','tela-cadastro-de-vaga')">Cadastrar Vaga</button>
+            </div> -->
         </section>
 
         <section id="tela-de-detalhe-recrutador"
@@ -146,12 +137,16 @@
                 <div id="nome-candidato-detalhe-recrutador">
                     <p>Teste</p>
                 </div>
-                <div id="data-candidato-detalhe=recrutador">
+                <div id="data-candidato-detalhe-recrutador">
                     <p>01/01/1997</p>
                 </div>
                 <div id="botao-reprovar-recrutador">
                     <button type="button" class="btn btn-danger">Reprovar</button>
                 </div>
+            </div>
+            <div class="d-flex justify-content-between w-50 mt-4 mb-4 ">
+                <button class="btn btn-light btn" onclick="redirecionaPag('tela-de-detalhe-recrutador','tela-inicial-recrutador')">Voltar</button>
+                <button class="btn btn-secondary btn">Excluir Vaga</button>
             </div>
         </section>
 
@@ -161,10 +156,10 @@
                 <span>DETALHE DA VAGA</span>
             </div>
             <div class="d-flex flex-column w-75 h-100 p-2 mt-3 border border-secondary rounded">
-                <p id="titulo-detalhe-vaga">Título: </p>
-                <p id="descricao-detalhe-vaga">Descrição: Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                <p id="titulo-detalhe-vaga-t">Título: </p>
+                <p id="descricao-detalhe-vaga-t">Descrição: Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Doloremque, nemo necessitatibus eligendi iste</p>
-                <p id="remuneracao-detalhe-vaga">Remuneração: </p>
+                <p id="remuneracao-detalhe-vaga-t">Remuneração: </p>
             </div>
             <div id="candidatos-na-vaga">
                 <h1 class="text-center fs-3 pt-3 pb-2">Candidatos na vaga</h1>
@@ -183,7 +178,7 @@
             </div>
             <div class="d-flex justify-content-between w-75">
                 <div id="botao-voltar-detalhe-trabalhador">
-                    <button type="button" class="btn btn-light border border-secondary">Sair</button>
+                    <button type="button" class="btn btn-light border border-secondary" onclick="redirecionaPag('tela-de-detalhe-trabalhador','tela-inicial-trabalhador')">Voltar</button>
                 </div>
                 <div>
                     <button type="button" class="btn btn-secondary">Candidatar-se</button>
@@ -207,15 +202,16 @@
                 <input type="text" class="form-control " id="remuneracao-input">
             </div>
             <div class="d-flex justify-content-between w-50 mt-4 mb-4 ">
-                <button class="btn btn-light btn-lg" onclick="redirecionaPag('','')">Voltar</button>
-                <button class="btn btn-secondary btn-lg" onclick="cadastrarVagas()">Cadastrar</button>
+                <button class="btn btn-light btn-lg" onclick="redirecionaPag('tela-cadastro-de-vaga','tela-inicial-recrutador')">Voltar</button>
+                <button class="btn btn-secondary btn-lg" onclick="cadastrarVagas(event)">Cadastrar</button>
             </div>
         </section>
     </div>
 
+    <!--  -->
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" type="text/javascript"></script>
     <script src="script.js"></script>
 </body>
 

@@ -63,6 +63,24 @@
       "remuneracao": "ewew",
       "candidatos": [],
       "id": 8
+    },
+    {
+      "tipo": "Recrutador",
+      "nome": "Joao",
+      "dataNascimento": "10/10/2002",
+      "email": "joao@dbccompany.com",
+      "senha": "teasrertwew123324W2!",
+      "candidaturas": [],
+      "id": 9
+    },
+    {
+      "tipo": "Trabalhador",
+      "nome": "Nome  ",
+      "dataNascimento": "30/10/2003",
+      "email": "xwexxsas@dbccompany.com",
+      "senha": "teasrertwew123324W2!",
+      "candidaturas": [],
+      "id": 10
     }
   ],
   "Vagas": [
@@ -156,6 +174,34 @@
       "remuneracao": "R$1200,00",
       "candidatos": [],
       "id": 13
+    },
+    {
+      "titulo": "teste",
+      "descrição": "teste",
+      "remuneracao": "R$1200,00",
+      "candidatos": [],
+      "id": 14
+    },
+    {
+      "titulo": "teste",
+      "descrição": "teste",
+      "remuneracao": "R$1200,00",
+      "candidatos": [],
+      "id": 15
+    },
+    {
+      "titulo": "teste",
+      "descrição": "teste",
+      "remuneracao": "R$1200,00",
+      "candidatos": [],
+      "id": 16
+    },
+    {
+      "titulo": "teste",
+      "descrição": "te121",
+      "remuneracao": "R$2131232",
+      "candidatos": [],
+      "id": 17
     }
   ]
 }
