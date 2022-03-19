@@ -1,19 +1,6 @@
 {
   "Usuarios": [
     {
-      "0": {},
-      "id": 1
-    },
-    {
-      "tipo": "Trabalhador",
-      "nome": "Paulo",
-      "dataNascimento": "30/10/2003",
-      "email": "paulo@dbccompany.com",
-      "senha": "rwers\\d1@@!!1",
-      "candidaturas": [],
-      "id": 2
-    },
-    {
       "tipo": "Trabalhador",
       "nome": "tger",
       "dataNascimento": "30/10/2003",
@@ -69,31 +56,16 @@
       "id": 9
     },
     {
-      "tipo": "Trabalhador",
-      "nome": "Nome  ",
-      "dataNascimento": "30/10/2003",
-      "email": "xwexxsas@dbccompany.com",
-      "senha": "teasrertwew123324W2!",
-      "candidaturas": [],
       "id": 10
     },
     {
       "tipo": "Trabalhador",
-      "nome": "thais",
-      "dataNascimento": "30/10/2002",
-      "email": "thais@dbccompany.com",
-      "senha": "33322!wdeW",
+      "nome": "joaozinho",
+      "dataNascimento": "12/10/1997",
+      "email": "joaozinho@dbccompany.com",
+      "senha": "123vaidarCerto!",
       "candidaturas": [],
       "id": 11
-    },
-    {
-      "id": 12
-    },
-    {
-      "id": 13
-    },
-    {
-      "id": 14
     }
   ],
   "Vagas": [

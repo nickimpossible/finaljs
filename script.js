@@ -8,7 +8,7 @@ class Usuario{
       dataNascimento;
       email;
       senha;
-      candidaturas = []; 
+      candidaturas; 
 
     constructor(tipo ,nome,dataNascimento,email,senha){
         this.tipo = tipo;
@@ -16,7 +16,7 @@ class Usuario{
         this.dataNascimento = dataNascimento;
         this.email = email;
         this.senha = senha;
-        
+        this.candidaturas = [];
     }
 }
 class Candidatura {
@@ -299,23 +299,17 @@ const funcaoRecarrega = () =>{
 //     this.idCandidato = idCandidato;
 //     this.reprovado = reprovado;
 // }
-const seCandidar = async () =>{
+const seCandidar = async () => {
     const btnCadastrar = document.getElementById('btn-cadastro');
     const instaciaVaga = new Candidatura(usuarioDoSite[1],usuarioDoSite[0],false);
     usuarioArray.push(instaciaVaga);
-    let temp2 = [{}]
-    let temp = await axios.get(`http://localhost:3000/Usuarios/`) 
+    let temp = await axios.get(`http://localhost:3000/Usuarios/${usuarioDoSite[1]}`) 
         .then((sucess) => {
-            sucess.data.forEach((element) => {
-                if(element.id === usuarioDoSite[1]){
-                    temp2.push(element)
-                    temp2.candidaturas.push(instanciaVaga)
-                }
+            let tempAlgumacoisa = sucess.data.candidaturas
+            tempAlgumacoisa.push(usuarioArray)
+            console.log(sucess.data)
             })
-        }).catch((erro)=>{
-            console.log('Ocorreu um erro')
-        })
-    axios.put(`http://localhost:3000/Usuarios/${usuarioDoSite[1]}`, temp2)
+    axios.put(`http://localhost:3000/Usuarios/${usuarioDoSite[1]}`, temp)
     .then((success) =>{
         alert('Sucesso! Candidatura aceita')
     }
