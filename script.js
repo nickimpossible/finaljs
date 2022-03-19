@@ -1,4 +1,5 @@
 
+
 //json-server --watch db.json
 const arrayDosFuncionario = [];
 class Usuario{
@@ -298,18 +299,25 @@ const funcaoRecarrega = () =>{
 //     this.idCandidato = idCandidato;
 //     this.reprovado = reprovado;
 // }
-const seCandidar = () =>{
+const seCandidar = async () =>{
     const btnCadastrar = document.getElementById('btn-cadastro');
     const instaciaVaga = new Candidatura(usuarioDoSite[1],usuarioDoSite[0],false);
     usuarioArray.push(instaciaVaga);
-    axios.put(`http://localhost:3000/Usuarios/`)
-    .then((success) =>{
-        sucess.data.forEach((element) => {
-            if(element.id === usuarioDoSite[1]){
-                element.candidaturas.push(instaciaVaga);
-            }    
+    let temp2 = [{}]
+    let temp = await axios.get(`http://localhost:3000/Usuarios/`) 
+        .then((sucess) => {
+            sucess.data.forEach((element) => {
+                if(element.id === usuarioDoSite[1]){
+                    temp2.push(element)
+                    temp2.candidaturas.push(instanciaVaga)
+                }
+            })
+        }).catch((erro)=>{
+            console.log('Ocorreu um erro')
         })
-        
+    axios.put(`http://localhost:3000/Usuarios/${usuarioDoSite[1]}`, temp2)
+    .then((success) =>{
+        alert('Sucesso! Candidatura aceita')
     }
     ).catch((erro)=>{
         console.log('Ocorreu um erro')
