@@ -32,13 +32,13 @@ class Candidatura {
 
 class Vaga {
     titulo;
-    descrição;
+    descricao;
     remuneracao;
     candidatos = [];
 
-    constructor(titulo , descrição , remuneracao){
+    constructor(titulo , descricao, remuneracao){
         this.titulo = titulo;
-        this.descrição = descrição;
+        this.descricao = descricao;
         this.remuneracao = remuneracao;
         
     }
@@ -257,14 +257,15 @@ const mostrarVagas = () => {
 //                     Doloremque, nemo necessitatibus eligendi iste</p>
 //                 <p id="remuneracao-detalhe-vaga">Remuneração: </p>
 const detalhesDaVaga = (event) =>{
-   
     let idDaVaga = event.target.id;
     usuarioDoSite.push(idDaVaga);
     axios.get(`http://localhost:3000/Vagas`)
-    .then((sucess) =>{
+    .then((sucess) => {
         let arr = sucess.data.find((element)=>{
-            return element.id == idDaVaga;
+           return element.id === parseInt(idDaVaga);
         })
+        console.log(arr)
+
         if(recrutador){
             redirecionaPag('tela-inicial-recrutador','tela-de-detalhe-recrutador');
             const pTituloDaVaga = document.getElementById('titulo-detalhe-vaga');
@@ -322,11 +323,8 @@ const seCandidar = async () =>{
                     const instaciaVaga = new Candidatura(usuarioDoSite[1],usuarioDoSite[0],false);
                     let dadosUsuario = success.data;
                     success.data.candidatura = instaciaVaga
-                    let dadosUsuarioECandidatura = success.data.candidatura
-                    // let candidaturaTeste = [];
-                    // candidaturaTeste.push(instaciaVaga);
+                    let dadosUsuarioECandidatura = success.data.candidatura;
                     retornoUsuarioComCandidatura = { ...dadosUsuario, candidatura: dadosUsuarioECandidatura };
-                    //retornoUsuarioComCandidatura.candidatura = {candidatura: instaciaVaga};
                     console.log(retornoUsuarioComCandidatura);
                 })
             

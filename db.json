@@ -64,7 +64,7 @@
       "email": "t@dbccompany.com",
       "senha": "123vaidarCerto!",
       "candidatura": {
-        "idVaga": "",
+        "idVaga": "1",
         "idCandidato": 6,
         "reprovado": false
       },
@@ -78,6 +78,13 @@
       "remuneracao": "R$50000",
       "candidatos": [],
       "id": 1
+    },
+    {
+      "titulo": "Dev Senior",
+      "descricao": "Melhor vaga de todos os tempos",
+      "remuneracao": "R$50000",
+      "candidatos": [],
+      "id": 2
     }
   ]
 }
