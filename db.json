@@ -1,289 +1,50 @@
 {
   "Usuarios": [
     {
+      "tipo": "Trabalhador",
+      "nome": "batatinha",
+      "dataNascimento": "12/10/1997",
+      "email": "batatinha@dbccompany.com",
+      "senha": "123vaidarCerto!",
+      "candidatura": [
+        {
+          "idVaga": "1",
+          "idCandidato": 1,
+          "reprovado": false
+        }
+      ],
       "id": 1
     },
     {
       "tipo": "Recrutador",
-      "nome": "joao",
-      "dataNascimento": "10/10/2001",
-      "email": "Joao@dbccompany.com",
-      "senha": "feef21!EF",
+      "nome": "batata",
+      "dataNascimento": "12/10/1997",
+      "email": "batata@dbccompany.com",
+      "senha": "123vaidarCerto!",
       "candidatura": [],
       "id": 2
-    },
-    {
-      "id": 3
-    },
-    {
-      "id": 4
-    },
-    {
-      "tipo": "Trabalhador",
-      "nome": "oracle",
-      "dataNascimento": "10/10/2002",
-      "email": "oracle@dbccompany.com",
-      "senha": "teste22341sad12!",
-      "candidatura": [
-        {
-          "idVaga": "1",
-          "idCandidato": 5,
-          "reprovado": false
-        }
-      ],
-      "id": 5
-    },
-    {
-      "tipo": "Trabalhador",
-      "nome": "joao",
-      "dataNascimento": "10/10/2002",
-      "email": "loao@dbccompany.com",
-      "senha": "13W2w@!w",
-      "candidatura": [
-        {
-          "idVaga": "1",
-          "idCandidato": 6,
-          "reprovado": false
-        },
-        {
-          "idVaga": "2",
-          "idCandidato": 6,
-          "reprovado": false
-        }
-      ],
-      "id": 6
-    },
-    {
-      "tipo": "Recrutador",
-      "nome": "thais",
-      "dataNascimento": "30/10/2003",
-      "email": "thais@dbccompany.com",
-      "senha": "teasr3232e@rtwew123324W2!",
-      "candidatura": [],
-      "id": 7
-    },
-    {
-      "0": {
-        "idVaga": "2",
-        "idCandidato": 8,
-        "reprovado": false
-      },
-      "id": 8
-    },
-    {
-      "0": {
-        "tipo": "Trabalhador",
-        "nome": "koi",
-        "dataNascimento": "10/10/2002",
-        "email": "koi@dbccompany.com",
-        "senha": "teasr3232e@rtwew123324W2!",
-        "candidatura": [
-          {
-            "idVaga": "2",
-            "idCandidato": 9,
-            "reprovado": false
-          },
-          {
-            "idVaga": "1",
-            "idCandidato": 9,
-            "reprovado": false
-          }
-        ],
-        "id": 9
-      },
-      "id": 9
-    },
-    {
-      "tipo": "Trabalhador",
-      "nome": "loi",
-      "dataNascimento": "10/10/2002",
-      "email": "loi@dbccompany.com",
-      "senha": "asdeqw2e123dwq!@w",
-      "candidatura": [
-        {
-          "idVaga": "1",
-          "idCandidato": 10,
-          "reprovado": false
-        },
-        {
-          "idVaga": "2",
-          "idCandidato": 10,
-          "reprovado": false
-        },
-        {
-          "idVaga": "",
-          "idCandidato": 10,
-          "reprovado": false
-        }
-      ],
-      "id": 10
-    },
-    {
-      "tipo": "Trabalhador",
-      "nome": "Romeu e Julieta",
-      "dataNascimento": "12/10/1997",
-      "email": "r@dbccompany.com",
-      "senha": "123vaidarCerto!",
-      "candidatura": [
-        [
-          []
-        ],
-        {
-          "idVaga": "3",
-          "idCandidato": 11,
-          "reprovado": false
-        }
-      ],
-      "id": 11
-    },
-    {
-      "tipo": "Trabalhador",
-      "nome": "luiz",
-      "dataNascimento": "08/12/2001",
-      "email": "luiz@dbccompany.com",
-      "senha": "123122!@Ws",
-      "candidatura": [
-        [
-          [
-            [
-              [],
-              {
-                "idVaga": "1",
-                "idCandidato": 12,
-                "reprovado": false
-              },
-              {
-                "idVaga": "3",
-                "idCandidato": 12,
-                "reprovado": false
-              }
-            ]
-          ]
-        ],
-        {
-          "idVaga": "3",
-          "idCandidato": 12,
-          "reprovado": false
-        }
-      ],
-      "id": 12
-    },
-    {
-      "tipo": "Trabalhador",
-      "nome": "Yurri",
-      "dataNascimento": "10/10/2001",
-      "email": "yuri@dbccompany.com",
-      "senha": "10203002x12@1W@!a",
-      "candidatura": [
-        [
-          [
-            [
-              [
-                [
-                  [
-                    [
-                      [
-                        [
-                          [
-                            [
-                              []
-                            ]
-                          ]
-                        ]
-                      ]
-                    ]
-                  ],
-                  {
-                    "idVaga": "3",
-                    "idCandidato": 13,
-                    "reprovado": false
-                  }
-                ]
-              ]
-            ]
-          ]
-        ],
-        {
-          "idVaga": "2",
-          "idCandidato": 13,
-          "reprovado": false
-        },
-        {
-          "idVaga": "1",
-          "idCandidato": 13,
-          "reprovado": false
-        },
-        {
-          "idVaga": "3",
-          "idCandidato": 13,
-          "reprovado": false
-        }
-      ],
-      "id": 13
-    },
-    {
-      "tipo": "Trabalhador",
-      "nome": "testetesteste",
-      "dataNascimento": "30/10/2003",
-      "email": "testetesteste@dbccompany.com",
-      "senha": "10203002x12@1W@!a",
-      "candidatura": [
-        {
-          "idVaga": "3",
-          "idCandidato": 14,
-          "reprovado": false
-        },
-        {
-          "idVaga": "1",
-          "idCandidato": 14,
-          "reprovado": false
-        }
-      ],
-      "id": 14
     }
   ],
   "Vagas": [
     {
-      "titulo": "Java S",
-      "descricao": "lorem lorem lorem lorem",
-      "remuneracao": "R$10000",
+      "titulo": "Construtor de Pontes",
+      "descricao": "Fazer uma ponte ué",
+      "remuneracao": "R$100000",
       "candidatos": [
-        null,
         {
           "idVaga": "1",
-          "idCandidato": 14,
+          "idCandidato": 1,
           "reprovado": false
         }
       ],
       "id": 1
     },
     {
-      "titulo": "Full Stack",
-      "descricao": "exerce back end , front end",
-      "remuneracao": "R$12200,00",
-      "candidatos": [
-        null,
-        {
-          "idVaga": "2",
-          "idCandidato": 13,
-          "reprovado": false
-        }
-      ],
+      "titulo": "Dev Senior",
+      "descricao": "Melhor vaga de todos os tempos",
+      "remuneracao": "R$50000",
+      "candidatos": [],
       "id": 2
-    },
-    {
-      "titulo": "Dev junior",
-      "descricao": "Esta nao é a melhor vaga, mas tá perfeita tambem",
-      "remuneracao": "R$2000",
-      "candidatos": [
-        null,
-        {
-          "idVaga": "3",
-          "idCandidato": 14,
-          "reprovado": false
-        }
-      ],
-      "id": 3
     }
   ]
 }

@@ -59,7 +59,7 @@ const validarEmail = (event) => {
     let existeArroba = caractereEmail.some(el => el === '@');
     let arroba = caractereEmail.lastIndexOf('@')
     let dominioEmail = email.slice(arroba + 1)
-    let pontoDepoisArroba = dominioEmail.indexOf('.') > (dominioEmail.indexOf('@') + 1) 
+    let pontoDepoisArroba = dominioEmail.indexOf('.') > (dominioEmail.indexOf('@') + 1)
     let ultimoCaractere = caractereEmail.lastIndexOf('.') < caractereEmail.length - 2
 
     let dominioDBC = dominioEmail.includes('dbccompany')
@@ -152,7 +152,8 @@ const loginNoSistema = () => {
                     trabalhador = true;
                     redirecionaPag('tela-de-login', 'tela-inicial-trabalhador');
                     mostrarVagas();
-                } else if (funcaoDoUsuario === 'Recrutador') {
+                }
+                if (funcaoDoUsuario === 'Recrutador') {
                     recrutador = true;
                     redirecionaPag('tela-de-login', 'tela-inicial-recrutador');
                     mostrarVagas();
@@ -186,12 +187,21 @@ const esqueciSenha = () => {
         }
         )
 }
-const redirecionaPag = (atual, direciona) => {
-    const pagAtual = document.getElementById(atual);
-    const pagDireciona = document.getElementById(direciona);
-    pagAtual.classList.toggle('d-none');
-    pagDireciona.classList.toggle('d-none');
+
+// const alternarClasses = (elemento, ...classes) => {
+//     classes.forEach(classe => {
+//         elemento.classList.toggle(classe);
+//     })
+// }
+
+const redirecionaPag = (origem, destino) => {
+    const elementoOrigem = document.getElementById(origem);
+    const elementoDestino = document.getElementById(destino);
+
+    elementoOrigem.classList.add('d-none');
+    elementoDestino.classList.remove('d-none');
 }
+
 const cadastrarVagas = (event) => {
     event.preventDefault();
     const tituloVaga = document.getElementById('titulo-input').value;
@@ -246,7 +256,7 @@ const mostrarVagas = () => {
                 divPai.append(divTitulo, divRemuneracao);
                 listaDeVagas.append(divPai);
                 divPai.addEventListener('click', detalhesDaVaga)
-                // divPai.addEventListener('click', mostrarUsuariosRecrutador)
+                divPai.addEventListener('click', mostrarCandidatos)
             })
         }
         ).catch((erro) => {
@@ -342,7 +352,7 @@ const seCandidar = async () => {
                 btnCadastrar.classList.add('d-none');
                 btnSairCandidatura.classList.remove('d-none');
             }
-            
+
         })
 
     await axios.put(`http://localhost:3000/Usuarios/${usuarioDoSite[0]}`, retornoUsuarioComCandidatura)
@@ -350,11 +360,11 @@ const seCandidar = async () => {
             console.log(success)
         })
 
-    let vagasComCandidatos = [];
+    let vagasComCandidatos;
     await axios.get(`http://localhost:3000/Vagas/${usuarioDoSite[1]}`)
         .then((success) => {
             let vaga = success.data;
-            let candidatosVaga = [success.data.canditados];
+            let candidatosVaga = success.data.candidatos;
             candidatosVaga.push(instaciaVaga)
             vagasComCandidatos = { ...vaga, candidatos: candidatosVaga }
         })
@@ -372,9 +382,9 @@ const cancelarCandidatura = async () => {
         .then((success) => {
             let verificaVaga = [success.data.candidatura]
             let vagaSelecionadas = [];
-            verificaVaga = success.data.candidatura.forEach((element) =>{
-               if(element.idVaga != usuarioDoSite[1]){
-               vagaSelecionadas.push(element);
+            verificaVaga = success.data.candidatura.forEach((element) => {
+                if (element.idVaga != usuarioDoSite[1]) {
+                    vagaSelecionadas.push(element);
                 }
             }
             );
@@ -385,14 +395,13 @@ const cancelarCandidatura = async () => {
             btnSairCandidatura.classList.toggle('d-none');
         })
     axios.put(`http://localhost:3000/Usuarios/${usuarioDoSite[0]}`, conteudo)
-        .then((success) =>{
+        .then((success) => {
             alert('Você saiu dessa candidatura')
             const btnCadastrar = document.getElementById('btn-cadastro');
             const btnSairCandidatura = document.getElementById('btn-sair-candidatura');
             btnCadastrar.classList.remove('d-none');
             btnSairCandidatura.classList.add('d-none');
         })
-
 
 }
 
@@ -408,57 +417,71 @@ const cancelarCandidatura = async () => {
 </div>
 </div> */}
 
-// const mostrarUsuariosRecrutador = async () => {
-//     const listadeCandidatos = document.getElementById('lista-candidatos-recrutador')
-//     await axios.get(`http://localhost:3000/Vagas`)
-//         .then((sucess) => {
-//             sucess.data.forEach((element) => {
-//                 if (element.id === usuarioDoSite[1]) {
+const mostrarCandidatos = async () => {
+    const listadeCandidatos = trabalhador ? document.getElementById('lista-candidatos-trabalhador') : document.getElementById('lista-candidatos-recrutador')
+    await axios.get(`http://localhost:3000/Vagas/${usuarioDoSite[1]}`)
+        .then(async (sucess) => {
+            let dataUsers = sucess.data.candidatos;
+            console.log(dataUsers)
 
-//                     const divNome = document.createElement('div');
-//                     const divData = document.createElement('div');
-//                     const divButton = document.createElement('div')
-//                     const spanNome = document.createElement('span');
-//                     const spanData = document.createElement('span');
-//                     const buttonReprove = document.createElement('button')
+            const divNome = document.createElement('div');
+            const divData = document.createElement('div');
+            const divButton = document.createElement('div')
+            const pNome = document.createElement('p');
+            const pData = document.createElement('p');
+            const buttonReprove = document.createElement('button')
 
-//                     divNome.setAttribute('id', element.id);
-//                     buttonReprove.classList.add('btn', 'btn-danger')
-//                     buttonReprove.setAttribute('id', 'botao-reprovar-recrutador')
-//                     buttonReprove.addEventListener('click', reprovarCandidato)
+            buttonReprove.classList.add('btn', 'btn-danger')
+            buttonReprove.setAttribute('id', 'botao-reprovar-recrutador')
+            buttonReprove.addEventListener('click', reprovarCandidato)
+            buttonReprove.textContent = 'Reprovar'
 
-//                     spanNome.textContent = 'teste'
-//                     spanData.textContent = '1099'
+            await axios.get(`http://localhost:3000/Usuarios`)
+                .then((success) => {
+                    let usuarioCandidatado = success.data
+                    console.log(usuarioCandidatado)
+                    // dataUsers.forEach(elemento => {
+                        usuarioCandidatado.forEach(el => {
+                            if (dataUsers.idCandidato == usuarioCandidatado.id) {
+                            pNome.textContent = el.nome
+                            pData.textContent = el.dataNascimento
+                        }
+                        })
+                    // })
+                })
 
-//                     divButton.append(buttonReprove)
-//                     divNome.append(spanNome);
-//                     divData.append(spanData);
-//                     listadeCandidatos.append(divNome, divData, divButton);
-//                 }
-//             })
-//         }
-//         ).catch((erro) => {
-//             console.log('Ocorreu um erro')
-//         }
+            divButton.append(buttonReprove)
+            divNome.append(pNome);
+            divData.append(pData);
+            listadeCandidatos.append(divNome, divData, divButton);
 
-//         )
-// }
+            if (trabalhador) {
+                listadeCandidatos.removeChild(divButton)
+            }
+
+        }
+        ).catch((erro) => {
+            console.log('Ocorreu um erro')
+        }
+
+        )
+}
 
 const reprovarCandidato = () => {
-    //aqui fazer a função que está sendo chamada no botão criado na funcao mostrarUsuariosRecrutador
+    //aqui fazer a função que está sendo chamada no botão criado na funcao mostrarCandidatos
 }
 // const candidaturaDoUsuario = {candidatura: instaciaVaga};
 // axios.put(`http://localhost:3000/Usuarios/${usuarioDoSite[0]}`,candidaturaDoUsuario)
 // .then((success) =>{
 //    console.log(success.data)
-//     })    
+//     })
 // ECMAScript - async await
 
 
 
 
 // AQUI PARA BAIXO SÃO SÓ EXEMPLOS DE COMO UTILIZAR O AXIOS
-// // PARA PUT E DELETE PRECISAMOS PASSAR TAMBÉM UM ID 
+// // PARA PUT E DELETE PRECISAMOS PASSAR TAMBÉM UM ID
 // axios.put(`http://localhost:3000/colaboradores/1`, colaboradorAlterado)
 //   .then( (sucesso) => {
 //     debugger
@@ -486,7 +509,7 @@ const reprovarCandidato = () => {
 //       }, (erro) => {
 //         // debugger
 //       } );
-//   }; 
+//   };
 
 
 
