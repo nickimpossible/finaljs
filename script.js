@@ -481,11 +481,8 @@ const reprovarCandidato = async () => {
     const nomeReprovado = document.getElementById('nome-usuario-candidato')
     nomeReprovado.classList.add('text-decoration-line-through', 'text-danger')
 
-    await axios.get(`http://localhost:3000/Usuarios/${usuarioCandidato}`)
-    .then ((success) => {
-        
-    })
-
+    const botaoDescandidatar = document.getElementById('btn-sair-candidatura')
+    botaoDescandidatar.classList.add('disabled', true)
 }
 // const candidaturaDoUsuario = {candidatura: instaciaVaga};
 // axios.put(`http://localhost:3000/Usuarios/${usuarioDoSite[0]}`,candidaturaDoUsuario)
