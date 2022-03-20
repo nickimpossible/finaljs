@@ -2,58 +2,33 @@
   "Usuarios": [
     {
       "tipo": "Trabalhador",
-      "nome": "O Cara",
+      "nome": "Joao",
       "dataNascimento": "12/10/1997",
-      "email": "ocara@dbccompany.com",
+      "email": "joao@dbccompany.com",
       "senha": "123vaidarCerto!",
       "candidatura": [
         [
-          [
-            [
-              {
-                "idVaga": "1",
-                "idCandidato": 1,
-                "reprovado": false
-              }
-            ]
-          ]
-        ],
-        {
-          "idVaga": "",
-          "idCandidato": 1,
-          "reprovado": false
-        },
-        {
-          "idVaga": "1",
-          "idCandidato": 1,
-          "reprovado": false
-        }
+          {
+            "idVaga": "2",
+            "idCandidato": 1,
+            "reprovado": false
+          }
+        ]
       ],
       "id": 1
     },
     {
       "id": 2
-    },
-    {
-      "tipo": "Trabalhador",
-      "nome": "Aquele Cara",
-      "dataNascimento": "12/10/1997",
-      "email": "chocolate@dbccompany.com",
-      "senha": "123vaidarCerto!",
-      "candidatura": [],
-      "id": 3
-    },
-    {
-      "id": 4
     }
   ],
   "Vagas": [
     {
-      "titulo": "Dev Senior",
-      "descricao": "Melhor vaga de todos os tempos",
-      "remuneracao": "R$50000",
+      "titulo": "Dev junior",
+      "descricao": "Esta nao é a melhor vaga, mas tá perfeita tambem",
+      "remuneracao": "R$2000",
       "candidatos": [
         [
+          [],
           {
             "idVaga": "1",
             "idCandidato": 1,
@@ -69,20 +44,11 @@
       "id": 1
     },
     {
-      "titulo": "Dev junior",
-      "descricao": "Esta nao é a melhor vaga, mas tá perfeita tambem",
-      "remuneracao": "R$2000",
+      "titulo": "Dev Senior",
+      "descricao": "Melhor vaga de todos os tempos",
+      "remuneracao": "R$50000",
       "candidatos": [
-        {
-          "idVaga": "2",
-          "idCandidato": 1,
-          "reprovado": false
-        },
-        {
-          "idVaga": "2",
-          "idCandidato": 1,
-          "reprovado": false
-        },
+        [],
         {
           "idVaga": "2",
           "idCandidato": 1,
