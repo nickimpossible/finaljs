@@ -431,6 +431,8 @@ const mostrarCandidatos = async () => {
             const pData = document.createElement('p');
             const buttonReprove = document.createElement('button')
 
+            pNome.setAttribute('id', 'nome-usuario-candidato')
+
             buttonReprove.classList.add('btn', 'btn-danger')
             buttonReprove.setAttribute('id', 'botao-reprovar-recrutador')
             buttonReprove.addEventListener('click', reprovarCandidato)
@@ -441,19 +443,19 @@ const mostrarCandidatos = async () => {
                     let usuarioCandidatado = success.data
                     console.log(usuarioCandidatado)
                     // dataUsers.forEach(elemento => {
-                        usuarioCandidatado.forEach(el => {
-                            if (dataUsers.idCandidato == usuarioCandidatado.id) {
+                    usuarioCandidatado.forEach(el => {
+                        if (dataUsers.idCandidato == usuarioCandidatado.id) {
                             pNome.textContent = el.nome
                             pData.textContent = el.dataNascimento
+                            divButton.append(buttonReprove)
+                            divNome.append(pNome);
+                            divData.append(pData);
+                            listadeCandidatos.append(divNome, divData, divButton);
                         }
-                        })
+                    })
                     // })
                 })
 
-            divButton.append(buttonReprove)
-            divNome.append(pNome);
-            divData.append(pData);
-            listadeCandidatos.append(divNome, divData, divButton);
 
             if (trabalhador) {
                 listadeCandidatos.removeChild(divButton)
@@ -469,6 +471,11 @@ const mostrarCandidatos = async () => {
 
 const reprovarCandidato = () => {
     //aqui fazer a função que está sendo chamada no botão criado na funcao mostrarCandidatos
+    const botaoReprovar = document.getElementById('botao-reprovar-recrutador')
+    botaoReprovar.classList.toggle('disabled', true)
+    const nomeReprovado = document.getElementById('nome-usuario-candidato')
+    nomeReprovado.classList.toggle('text-decoration-line-through')
+
 }
 // const candidaturaDoUsuario = {candidatura: instaciaVaga};
 // axios.put(`http://localhost:3000/Usuarios/${usuarioDoSite[0]}`,candidaturaDoUsuario)
