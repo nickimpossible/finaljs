@@ -2,11 +2,27 @@
   "Usuarios": [
     {
       "tipo": "Trabalhador",
-      "nome": "batatinha",
+      "nome": "O Cara",
       "dataNascimento": "12/10/1997",
-      "email": "batatinha@dbccompany.com",
+      "email": "ocara@dbccompany.com",
       "senha": "123vaidarCerto!",
       "candidatura": [
+        [
+          [
+            [
+              {
+                "idVaga": "1",
+                "idCandidato": 1,
+                "reprovado": false
+              }
+            ]
+          ]
+        ],
+        {
+          "idVaga": "",
+          "idCandidato": 1,
+          "reprovado": false
+        },
         {
           "idVaga": "1",
           "idCandidato": 1,
@@ -16,21 +32,34 @@
       "id": 1
     },
     {
-      "tipo": "Recrutador",
-      "nome": "batata",
+      "id": 2
+    },
+    {
+      "tipo": "Trabalhador",
+      "nome": "Aquele Cara",
       "dataNascimento": "12/10/1997",
-      "email": "batata@dbccompany.com",
+      "email": "chocolate@dbccompany.com",
       "senha": "123vaidarCerto!",
       "candidatura": [],
-      "id": 2
+      "id": 3
+    },
+    {
+      "id": 4
     }
   ],
   "Vagas": [
     {
-      "titulo": "Construtor de Pontes",
-      "descricao": "Fazer uma ponte ué",
-      "remuneracao": "R$100000",
+      "titulo": "Dev Senior",
+      "descricao": "Melhor vaga de todos os tempos",
+      "remuneracao": "R$50000",
       "candidatos": [
+        [
+          {
+            "idVaga": "1",
+            "idCandidato": 1,
+            "reprovado": false
+          }
+        ],
         {
           "idVaga": "1",
           "idCandidato": 1,
@@ -40,10 +69,26 @@
       "id": 1
     },
     {
-      "titulo": "Dev Senior",
-      "descricao": "Melhor vaga de todos os tempos",
-      "remuneracao": "R$50000",
-      "candidatos": [],
+      "titulo": "Dev junior",
+      "descricao": "Esta nao é a melhor vaga, mas tá perfeita tambem",
+      "remuneracao": "R$2000",
+      "candidatos": [
+        {
+          "idVaga": "2",
+          "idCandidato": 1,
+          "reprovado": false
+        },
+        {
+          "idVaga": "2",
+          "idCandidato": 1,
+          "reprovado": false
+        },
+        {
+          "idVaga": "2",
+          "idCandidato": 1,
+          "reprovado": false
+        }
+      ],
       "id": 2
     }
   ]
