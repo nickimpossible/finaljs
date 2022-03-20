@@ -261,7 +261,7 @@ const mostrarVagas = () => {
 //                 <p id="remuneracao-detalhe-vaga">Remuneração: </p>
 const detalhesDaVaga = (event) => {
     let idDaVaga = event.target.id;
-    usuarioDoSite.push(idDaVaga);
+    usuarioDoSite[1] = idDaVaga;
     axios.get('http://localhost:3000/Vagas')
         .then((sucess) => {
             let arr = sucess.data.find((element) => {
@@ -285,8 +285,10 @@ const detalhesDaVaga = (event) => {
                 pDescricaoDeVaga.textContent = "Descrição:" + arr.descricao;
                 pRemuneracao.textContent = "Remuneração:" + arr.remuneracao;
             }
-
-
+            const btnCadastrar = document.getElementById('btn-cadastro');
+            const btnSairCandidatura = document.getElementById('btn-sair-candidatura');
+            btnCadastrar.classList.remove('d-none');
+            btnSairCandidatura.classList.add('d-none');
         }).catch((erro) => {
             console.log('Ops , ocorreu um erro')
         })
@@ -318,7 +320,8 @@ var validaBtnCandidatura = false;
 const seCandidar = async () => {
     const btnCadastrar = document.getElementById('btn-cadastro');
     const btnSairCandidatura = document.getElementById('btn-sair-candidatura');
-
+    btnCadastrar.classList.toggle('d-none');
+    btnSairCandidatura.classList.toggle('d-none');
     let retornoUsuarioComCandidatura = [];
     const instaciaVaga = new Candidatura(usuarioDoSite[1], usuarioDoSite[0], false);
     await axios.get(`http://localhost:3000/Usuarios/${usuarioDoSite[0]}`)
@@ -328,16 +331,18 @@ const seCandidar = async () => {
             vagaComInstacia.push(instaciaVaga)
             let dadosUsuario = success.data;
             // success.data.candidatura = vagaComInstacia;
-            let verificaVaga = dadosUsuario.candidatura.some((element) => element.idVaga === usuarioDoSite[1]);
+            let verificaVaga = dadosUsuario.candidatura.some((element) => element.idVaga == usuarioDoSite[1]);
             retornoUsuarioComCandidatura = { ...dadosUsuario };
             if (!verificaVaga) {
+                alert('Voce foi cadastrado nessa vaga');
                 retornoUsuarioComCandidatura.candidatura.push(instaciaVaga);
                 validaBtnCandidatura = true;
             } else {
-                alert('Voce ja esta cadastrado nessa vaga deseja sair dela');
+                confirm('Voce ja esta cadastrado nessa!');
+                btnCadastrar.classList.add('d-none');
+                btnSairCandidatura.classList.remove('d-none');
             }
-            btnCadastrar.classList.toggle('d-none');
-            btnSairCandidatura.classList.toggle('d-none');
+            
         })
 
     await axios.put(`http://localhost:3000/Usuarios/${usuarioDoSite[0]}`, retornoUsuarioComCandidatura)
@@ -362,27 +367,31 @@ const cancelarCandidatura = async () => {
     const btnCadastrar = document.getElementById('btn-cadastro');
     const btnSairCandidatura = document.getElementById('btn-sair-candidatura');
     let retornoUsuarioSemCandidatura = [];
+    let conteudo = [];
     await axios.get(`http://localhost:3000/Usuarios/${usuarioDoSite[0]}`)
         .then((success) => {
-
             let verificaVaga = [success.data.candidatura]
-
-            verificaVaga = verificaVaga.filter((element) =>
-                parseInt(element.idVaga) != usuarioDoSite[1]
+            let vagaSelecionadas = [];
+            verificaVaga = success.data.candidatura.forEach((element) =>{
+               if(element.idVaga != usuarioDoSite[1]){
+               vagaSelecionadas.push(element);
+                }
+            }
             );
-            let conteudo = { ...success.data };
-            conteudo.candidatura.
-
-                console.log(retornoUsuarioSemCandidatura);
-
+            success.data.candidatura = [];
+            conteudo = { ...success.data };
+            conteudo.candidatura.push(vagaSelecionadas);
             btnCadastrar.classList.toggle('d-none');
             btnSairCandidatura.classList.toggle('d-none');
-
         })
-    // axios.put(`http://localhost:3000/Usuarios/${usuarioDoSite[0]}`, retornoUsuarioSemCandidatura)
-    //     .then((success) =>{
-    //         //teste
-    //     })
+    axios.put(`http://localhost:3000/Usuarios/${usuarioDoSite[0]}`, conteudo)
+        .then((success) =>{
+            alert('Você saiu dessa candidatura')
+            const btnCadastrar = document.getElementById('btn-cadastro');
+            const btnSairCandidatura = document.getElementById('btn-sair-candidatura');
+            btnCadastrar.classList.remove('d-none');
+            btnSairCandidatura.classList.add('d-none');
+        })
 
 
 }
