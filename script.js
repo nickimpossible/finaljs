@@ -1,3 +1,5 @@
+const { default: axios } = require("axios");
+
 //json-server --watch db.json
 const arrayDosFuncionario = [];
 class Usuario {
@@ -417,6 +419,8 @@ const cancelarCandidatura = async () => {
 </div>
 </div> */}
 
+let usuarioCandidato = 0;
+
 const mostrarCandidatos = async () => {
     const listadeCandidatos = trabalhador ? document.getElementById('lista-candidatos-trabalhador') : document.getElementById('lista-candidatos-recrutador')
     await axios.get(`http://localhost:3000/Vagas/${usuarioDoSite[1]}`)
@@ -451,6 +455,7 @@ const mostrarCandidatos = async () => {
                             divNome.append(pNome);
                             divData.append(pData);
                             listadeCandidatos.append(divNome, divData, divButton);
+                            usuarioCandidato = el.id;
                         }
                     })
                     // })
@@ -469,12 +474,17 @@ const mostrarCandidatos = async () => {
         )
 }
 
-const reprovarCandidato = () => {
+const reprovarCandidato = async () => {
     //aqui fazer a função que está sendo chamada no botão criado na funcao mostrarCandidatos
     const botaoReprovar = document.getElementById('botao-reprovar-recrutador')
-    botaoReprovar.classList.toggle('disabled', true)
+    botaoReprovar.classList.add('btn-secondary', 'disabled', true)
     const nomeReprovado = document.getElementById('nome-usuario-candidato')
-    nomeReprovado.classList.toggle('text-decoration-line-through')
+    nomeReprovado.classList.add('text-decoration-line-through', 'text-danger')
+
+    await axios.get(`http://localhost:3000/Usuarios/${usuarioCandidato}`)
+    .then ((success) => {
+        
+    })
 
 }
 // const candidaturaDoUsuario = {candidatura: instaciaVaga};
