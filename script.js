@@ -51,21 +51,19 @@ var usuarioArray = [];
 const validarEmail = (event) => {
 
     const input = event ? event.target : document.getElementById('email-input');
-    const email = input.value;
+    const emailDigitado = input.value;
 
-    let caractereEmail = [...email];
-    let primeiroCaractere = caractereEmail.toString().charAt(0);
-    let validacaoCaractere = primeiroCaractere.toLowerCase !== primeiroCaractere.toUpperCase();
-    let existeArroba = caractereEmail.some(el => el === '@');
-    let arroba = caractereEmail.lastIndexOf('@')
-    let dominioEmail = email.slice(arroba + 1)
-    let pontoDepoisArroba = dominioEmail.indexOf('.') > (dominioEmail.indexOf('@') + 1)
-    let ultimoCaractere = caractereEmail.lastIndexOf('.') < caractereEmail.length - 2
-
-    let dominioDBC = dominioEmail.includes('dbccompany')
-
-    const ehValido = validacaoCaractere && existeArroba && pontoDepoisArroba && ultimoCaractere && dominioDBC;
+    let listaCaracteres = emailDigitado.split(''); // [...emailDigitado]
+    let emailSplit = emailDigitado.split('@');
+    let possuiArroba = emailSplit.length > 1;
+    let dominioEmail = possuiArroba ? emailSplit[1] : '';
+    let dominioEmailSplit = dominioEmail.split('.');
+    let possuiPontosNoDominio = dominioEmailSplit.length > 1;
+    let possuiCaracteresEntrePontos = dominioEmailSplit.every(d => d.length > 1);
+    let comecaComLetra = listaCaracteres.length ? listaCaracteres[0].toUpperCase() !== listaCaracteres[0].toLowerCase() : false;
+    let ehValido = possuiArroba && possuiPontosNoDominio && possuiCaracteresEntrePontos && comecaComLetra;
     booleanDoEmail = ehValido;
+    mensagemErro(ehValido, 'email-registration-error')
 }
 const validarSenha = (event) => {
     const input = event ? event.target : document.getElementById('senha-input');
@@ -79,6 +77,7 @@ const validarSenha = (event) => {
     let peloMenosOito = senha.length >= 8;
     const ehValido = possuiLetraMinuscula && possuiLetraMaiuscula && possuiEspecial && possuiNumero && peloMenosOito;
     booleanDoData = ehValido;
+    mensagemErro(ehValido, 'password-registration-error')
 }
 const adicionarMascaraData = (event) => {
     const dataDomEvent = event.target.value;
@@ -97,6 +96,7 @@ const validarData = (data) => {
     let verificacaoIdade = (testaData.isBetween(vinteEhSeisAnosAtras, dezoitoAnosAtras)) ? true : false;
     const validadorGeralData = testaDataFutura && verificacaoIdade;
     booleanDaSenha = validadorGeralData;
+    mensagemErro(validadorGeralData, 'date-registration-error')
 }
 const validaNome = (event) => {
     const input = event ? event.target : document.getElementById('nome-input');
@@ -106,6 +106,7 @@ const validaNome = (event) => {
     let validaNomeArr = [...nomeSemEspaco]
     let somenteLetras = validaNomeArr.every(el => el.toString().toLowerCase() !== el.toString().toUpperCase())
     booleanNome = somenteLetras;
+    mensagemErro(booleanNome, 'nome-error')
 }
 
 const validarCadastro = (event) => {
@@ -463,4 +464,13 @@ const reprovarCandidato = async () => {
     botaoReprovar.classList.add('btn-secondary', 'disabled', true)
     const nomeReprovado = document.getElementById('nome-usuario-candidato')
     nomeReprovado.classList.add('text-decoration-line-through', 'text-danger')
+}
+
+const mensagemErro = (variavel, id) => {
+    let mensagemErro = document.getElementById(id);
+    if (!variavel) {
+        return mensagemErro.classList.remove('d-none')
+    } else {
+        mensagemErro.classList.add('d-none');
+    }
 }
