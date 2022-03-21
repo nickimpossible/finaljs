@@ -232,9 +232,9 @@ const cadastrarVagas = (event) => {
                         <span class="fw-bold">Remuneração</span><span>: R$ 5.500,00</span>
                     </div>
 </div> */
-const mostrarVagas = () => {
+const mostrarVagas = async () => {
     const listaDeVagas = trabalhador ? document.getElementById('vagas-lista-trabalhador') : document.getElementById('vagas-lista-recrutador')
-    axios.get('http://localhost:3000/Vagas')
+    await axios.get('http://localhost:3000/Vagas')
         .then((sucess) => {
             sucess.data.forEach((element) => {
                 const divPai = document.createElement('div');
@@ -499,6 +499,15 @@ const mostrarCandidatos = async () => {
         }
 
         )
+}
+
+const deletarVaga = async() =>{
+    await axios.delete(`http://localhost:3000/Vagas/${usuarioDoSite[1]}`)
+   .then((success) => {
+       alert('Vaga Excluida')
+   })
+
+   redirecionaPag('tela-de-detalhe-recrutador' , 'tela-inicial-recrutador')
 }
 
 const reprovarCandidato = async () => {
