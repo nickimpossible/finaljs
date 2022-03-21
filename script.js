@@ -144,20 +144,20 @@ const loginNoSistema = () => {
     axios.get('http://localhost:3000/Usuarios')
         .then((sucesso) => {
             sucesso.data.forEach(element => {
-                if (emailLog === element.email && senhaLog === element.senha) {
+                let podeLogar = emailLog === element.email && senhaLog === element.senha
+                if (podeLogar) {
                     loginValid = true;
-                    funcaoDoUsuario = element.tipo;
                     usuarioDoSite.push(element.id);
-                }
-                if (funcaoDoUsuario === 'Trabalhador') {
-                    trabalhador = true;
-                    redirecionaPag('tela-de-login', 'tela-inicial-trabalhador');
-                    mostrarVagas();
-                }
-                if (funcaoDoUsuario === 'Recrutador') {
-                    recrutador = true;
-                    redirecionaPag('tela-de-login', 'tela-inicial-recrutador');
-                    mostrarVagas();
+                    if (element.tipo === 'Trabalhador') {
+                        trabalhador = true;
+                        redirecionaPag('tela-de-login', 'tela-inicial-trabalhador');
+                        mostrarVagas();
+                    }
+                    if (element.tipo === 'Recrutador') {
+                        recrutador = true;
+                        redirecionaPag('tela-de-login', 'tela-inicial-recrutador');
+                        mostrarVagas();
+                    }
                 }
             }
             )
@@ -249,8 +249,8 @@ const mostrarVagas = async () => {
                 spanRemuneracao.classList.add('fw-bold');
                 listaDeVagas.classList.add('w-75');
 
-                spanTitulo.textContent = 'Título: ' + element.titulo;
-                spanRemuneracao.textContent = 'Remuneração: ' + element.remuneracao;
+                spanTitulo.textContent = '';
+                spanRemuneracao.textContent = '';
 
                 divTitulo.append(spanTitulo);
                 divRemuneracao.append(spanRemuneracao);
@@ -258,6 +258,9 @@ const mostrarVagas = async () => {
                 listaDeVagas.append(divPai);
                 divPai.addEventListener('click', detalhesDaVaga)
                 divPai.addEventListener('click', mostrarCandidatos)
+                
+                spanTitulo.textContent = 'Título: ' + element.titulo;
+                spanRemuneracao.textContent = 'Remuneração: ' + element.remuneracao;
             })
         }
         ).catch((erro) => {
@@ -455,9 +458,9 @@ const mostrarCandidatos = async () => {
             console.log(sucess.data.candidatos)
             console.log(dataUsers)
 
-            const divPai = document.createElement('div')
-            divPai.classList.add('d-flex', 'column', 'justify-content-between')
-            const divNome = document.createElement('div');
+            const divPaiDois = document.createElement('div')
+            divPaiDois.classList.add('d-flex', 'column', 'justify-content-between')
+            const divNomeDois = document.createElement('div');
             const divData = document.createElement('div');
             const divButton = document.createElement('div')
             const pNome = document.createElement('p');
@@ -479,10 +482,10 @@ const mostrarCandidatos = async () => {
                                 pNome.textContent = el.nome
                                 pData.textContent = el.dataNascimento
                                 divButton.append(buttonReprove)
-                                divNome.append(pNome);
+                                divNomeDois.append(pNome);
                                 divData.append(pData);
-                                divPai.append(divNome, divData, divButton)
-                                listadeCandidatos.append(divPai);
+                                divPaiDois.append(divNomeDois, divData, divButton)
+                                listadeCandidatos.append( divPaiDois);
                             }
                         })
                     })
@@ -490,7 +493,7 @@ const mostrarCandidatos = async () => {
 
 
             if (trabalhador) {
-                divPai.removeChild(divButton)
+                divPaiDois.removeChild(divButton)
             }
 
         }

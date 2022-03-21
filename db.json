@@ -2,34 +2,18 @@
   "Usuarios": [
     {
       "tipo": "Trabalhador",
-      "nome": "batata",
+      "nome": "Maria",
       "dataNascimento": "12/10/1997",
-      "email": "batata@dbccompany.com",
+      "email": "maria@dbccompany.com",
       "senha": "123vaidarCerto!",
-      "candidatura": [
-        {
-          "idVaga": "1",
-          "idCandidato": 1,
-          "reprovado": false
-        },
-        {
-          "idVaga": "",
-          "idCandidato": 1,
-          "reprovado": false
-        },
-        {
-          "idVaga": "2",
-          "idCandidato": 1,
-          "reprovado": false
-        }
-      ],
+      "candidatura": [],
       "id": 1
     },
     {
       "tipo": "Recrutador",
-      "nome": "chocolate",
+      "nome": "José",
       "dataNascimento": "12/10/1997",
-      "email": "c@dbccompany.com",
+      "email": "jose@dbccompany.com",
       "senha": "123vaidarCerto!",
       "candidatura": [],
       "id": 2
