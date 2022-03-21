@@ -401,9 +401,8 @@ const cancelarCandidatura = async () => {
             success.data.candidatura = [];
             conteudo = { ...success.data };
             //conteudo.candidatura.push(vagaSelecionadas);
-            btnCadastrar.classList.toggle('d-none');
-            btnSairCandidatura.classList.toggle('d-none');
-
+            // btnCadastrar.classList.toggle('d-none');
+            // btnSairCandidatura.classList.toggle('d-none');
         })
     await axios.put(`http://localhost:3000/Usuarios/${usuarioDoSite[0]}`, conteudo)
         .then((success) =>{
@@ -456,6 +455,8 @@ const mostrarCandidatos = async () => {
             console.log(sucess.data.candidatos)
             console.log(dataUsers)
 
+            const divPai = document.createElement('div')
+            divPai.classList.add('d-flex', 'column', 'justify-content-between')
             const divNome = document.createElement('div');
             const divData = document.createElement('div');
             const divButton = document.createElement('div')
@@ -480,7 +481,8 @@ const mostrarCandidatos = async () => {
                                 divButton.append(buttonReprove)
                                 divNome.append(pNome);
                                 divData.append(pData);
-                                listadeCandidatos.append(divNome, divData, divButton);
+                                divPai.append(divNome, divData, divButton)
+                                listadeCandidatos.append(divPai);
                             }
                         })
                     })
@@ -488,7 +490,7 @@ const mostrarCandidatos = async () => {
 
 
             if (trabalhador) {
-                listadeCandidatos.removeChild(divButton)
+                divPai.removeChild(divButton)
             }
 
         }

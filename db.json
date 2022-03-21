@@ -8,6 +8,16 @@
       "senha": "123vaidarCerto!",
       "candidatura": [
         {
+          "idVaga": "1",
+          "idCandidato": 1,
+          "reprovado": false
+        },
+        {
+          "idVaga": "",
+          "idCandidato": 1,
+          "reprovado": false
+        },
+        {
           "idVaga": "2",
           "idCandidato": 1,
           "reprovado": false
@@ -30,7 +40,13 @@
       "titulo": "Dev Senior",
       "descricao": "Melhor vaga de todos os tempos",
       "remuneracao": "R$50000",
-      "candidatos": [],
+      "candidatos": [
+        {
+          "idVaga": "1",
+          "idCandidato": 1,
+          "reprovado": false
+        }
+      ],
       "id": 1,
       "candidatura": []
     },
