@@ -160,7 +160,6 @@ const loginNoSistema = () => {
                 }
             }
             )
-            resetarCampos(emailLog, senhaLog)
         }
         ).catch((reject) => {
             console.log('ops!Um erro foi encontrado')
@@ -197,29 +196,26 @@ const redirecionaPag = (origem, destino) => {
     elementoDestino.classList.remove('d-none');
 }
 
-const cadastrarVagas = async (event) => {
+const cadastrarVagas = (event) => {
     event.preventDefault();
-    let tituloVaga = document.getElementById('titulo-input').value;
-    let descricaoVaga = document.getElementById('descricao-input').value;
-    let remuneracaoVaga = document.getElementById('remuneracao-input').value;
+    const tituloVaga = document.getElementById('titulo-input').value;
+    const descricaoVaga = document.getElementById('descricao-input').value;
+    let remunuceracaoVaga = document.getElementById('remuneracao-input').value;
 
-    if (tituloVaga === '' || descricaoVaga === '' || isNaN(remuneracaoVaga.replaceAll(',', '')) || remuneracaoVaga.replaceAll(',', '') < 0) {
+    if (tituloVaga === '' || descricaoVaga === '' || isNaN(remunuceracaoVaga.replaceAll(',', '')) || remunuceracaoVaga.replaceAll(',', '') < 0) {
         alert('Ops, Preencha os campos corretamente');
     } else {
-        remuneracaoVaga = 'R$' + remuneracaoVaga;
-        const instaciaVaga = new Vaga(tituloVaga, descricaoVaga, remuneracaoVaga);
-        await axios.post('http://localhost:3000/Vagas', instaciaVaga)
+        remunuceracaoVaga = 'R$' + remunuceracaoVaga;
+        const instaciaVaga = new Vaga(tituloVaga, descricaoVaga, remunuceracaoVaga);
+        axios.post('http://localhost:3000/Vagas', instaciaVaga)
             .then((sucesso) => {
                 console.log('Vaga Cadastrada Com sucesso');
                 redirecionaPag('tela-cadastro-de-vaga', 'tela-inicial-recrutador');
-                
             })
             .catch((erro) => {
                 console.log('Ops , não foi possível cadastrar a vaga');
             })
-        }
-
-    resetarCampos(tituloVaga, descricaoVaga, remuneracaoVaga)
+    }
 }
 
 const mostrarVagas = async () => {
@@ -307,18 +303,18 @@ const seCandidar = async () => {
     btnCadastrar.classList.toggle('d-none');
     btnSairCandidatura.classList.toggle('d-none');
     let retornoUsuarioComCandidatura = [];
-    const instaciaVagaCandidatar = new Candidatura(usuarioDoSite[1], usuarioDoSite[0], false);
+    const instaciaVaga = new Candidatura(usuarioDoSite[1], usuarioDoSite[0], false);
     await axios.get(`http://localhost:3000/Usuarios/${usuarioDoSite[0]}`)
         .then((success) => {
-            // const instaciaVagaCandidatar = new Candidatura(usuarioDoSite[1],usuarioDoSite[0],false);
+            // const instaciaVaga = new Candidatura(usuarioDoSite[1],usuarioDoSite[0],false);
             let vagaComInstacia = [];
-            vagaComInstacia.push(instaciaVagaCandidatar)
+            vagaComInstacia.push(instaciaVaga)
             let dadosUsuario = success.data;
             let verificaVaga = dadosUsuario.candidatura.some((element) => element.idVaga == usuarioDoSite[1]);
             retornoUsuarioComCandidatura = { ...dadosUsuario };
             if (!verificaVaga) {
                 alert('Voce foi cadastrado nessa vaga');
-                retornoUsuarioComCandidatura.candidatura.push(instaciaVagaCandidatar);
+                retornoUsuarioComCandidatura.candidatura.push(instaciaVaga);
                 validaBtnCandidatura = true;
                 btnCadastrar.classList.add('d-none');
                 btnSairCandidatura.classList.remove('d-none');
@@ -334,7 +330,7 @@ const seCandidar = async () => {
     await axios.get(`http://localhost:3000/Vagas/${usuarioDoSite[1]}`)
         .then((success) => {
             let vagasAlgumaCoisa = [];
-            vagasAlgumaCoisa.push(instaciaVagaCandidatar)
+            vagasAlgumaCoisa.push(instaciaVaga)
             success.data.candidatos = vagasAlgumaCoisa;
             let dadosVaga = success.data;
             vagasComCandidatos = { ...dadosVaga };
@@ -405,8 +401,11 @@ const mostrarCandidatos = async () => {
             let dataUsers = sucess.data.candidatos;
             console.log(sucess.data.candidatos)
             console.log(dataUsers)
-
-            const divPaiDois = document.createElement('div')
+            let seDiviPaiExiste = document.getElementById('list-candidatos-divPai')
+            const divPaiDois =  seDiviPaiExiste ? seDiviPaiExiste : document.createElement('div')
+            divPaiDois.childNodes.forEach(el => {
+                el.remove()
+            })
             divPaiDois.setAttribute('id', 'list-candidatos-divPai')
             divPaiDois.classList.add('d-flex', 'column', 'justify-content-between')
             const divNomeDois = document.createElement('div');
@@ -417,24 +416,31 @@ const mostrarCandidatos = async () => {
             const buttonReprove = document.createElement('button')
 
             pNome.setAttribute('id', 'nome-usuario-candidato')
+            pData.setAttribute('id', 'data-usuario-candidato')
 
             buttonReprove.classList.add('btn', 'btn-danger')
             buttonReprove.setAttribute('id', 'botao-reprovar-recrutador')
-            //buttonReprove.addEventListener('click', reprovarCandidato)
+            buttonReprove.addEventListener('click', reprovarCandidato)
             buttonReprove.textContent = 'Reprovar'
 
-            pNome.textContent = 'Teste'
-            pData.textContent = '01/01/1001'
-
-            divButton.append(buttonReprove)
-            divNomeDois.append(pNome);
-            divData.append(pData);
-            divPaiDois.append(divNomeDois, divData, divButton)
-            listadeCandidatos.append(divPaiDois);
-            if (trabalhador) {
-                divPaiDois.removeChild(divButton)
-            }
-
+            axios.get(`http://localhost:3000/Usuarios`)
+                .then((success) => {
+                    success.data.forEach(elemento => {
+                        let candidatosDaVaga = elemento.candidatura.find(el => el.idVaga == usuarioDoSite[1]);
+                        if (candidatosDaVaga) {
+                            pNome.textContent = elemento.nome
+                            pData.textContent = elemento.dataNascimento
+                            divButton.append(buttonReprove)
+                            divNomeDois.append(pNome);
+                            divData.append(pData);
+                            divPaiDois.append(divNomeDois, divData, divButton)
+                            listadeCandidatos.append(divPaiDois);
+                            if (trabalhador) {
+                                divPaiDois.removeChild(divButton)
+                            }
+                        }
+                    })
+                })
         }
         ).catch((erro) => {
             console.log('Ocorreu um erro')
@@ -442,21 +448,6 @@ const mostrarCandidatos = async () => {
 
         )
 }
-
-// const candidatosNaVaga = async (propriedade) => {
-
-//     await axios.get(`http://localhost:3000/Usuarios`)
-//         .then((success) => {
-//             success.data.forEach(elemento => {
-//                 let candidatosDaVagaExistente = elemento.candidatura.find(el => el.idVaga === usuarioDoSite[1]);
-//                 console.log(candidatosDaVagaExistente)
-//                 if(!candidatosDaVagaExistente) {
-//                     console.log('tem alguma coisa aqui nao tá certa viu')
-//                 }
-//                 return candidatosDaVagaExistente.propriedade;
-//             })
-//         })
-// }
 
 const deletarVaga = async () => {
     await axios.delete(`http://localhost:3000/Vagas/${usuarioDoSite[1]}`)
@@ -467,31 +458,9 @@ const deletarVaga = async () => {
     redirecionaPag('tela-de-detalhe-recrutador', 'tela-inicial-recrutador')
 }
 
-// const reprovarCandidato = async () => {
-//     const botaoReprovar = document.getElementById('botao-reprovar-recrutador')
-//     botaoReprovar.classList.add('btn-secondary', 'disabled', true)
-//     const nomeReprovado = document.getElementById('nome-usuario-candidato')
-//     nomeReprovado.classList.add('text-decoration-line-through', 'text-danger')
-//     let retornoUsuarioCandidatura;
-//     await axios.get(`http://localhost:3000/Usuarios/${usuarioDoSite[0]}`)
-//         .then((success) => {
-//             let candidatura = success.data.candidatura.reprovado
-//             candidatura.reprovado = true;
-//             retornoUsuarioCandidatura = { ...success.data, candidatura }
-//         })
-//         .catch((erro) => {
-//             console.log('ops, deu probleminha aqui')
-//         })
-
-//     await axios.put(`http://localhost:3000/Usuarios/${usuarioDoSite[0]}`, retornoUsuarioCandidatura)
-//         .then((success) => {
-//             console.log('usuario agora foi reprovado e nao poderá cancelar sua candidatura hahahahahha se ferrou')
-//         })
-//         .catch((erro) => {
-//             console.log('ops, deu probleminha')
-//         })
-// }
-
-const resetarCampos = (...campos) => {
-    campos.forEach(c => c.value = '');
+const reprovarCandidato = async () => {
+    const botaoReprovar = document.getElementById('botao-reprovar-recrutador')
+    botaoReprovar.classList.add('btn-secondary', 'disabled', true)
+    const nomeReprovado = document.getElementById('nome-usuario-candidato')
+    nomeReprovado.classList.add('text-decoration-line-through', 'text-danger')
 }

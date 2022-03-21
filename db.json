@@ -6,13 +6,7 @@
       "dataNascimento": "12/10/1997",
       "email": "maria@dbccompany.com",
       "senha": "123vaidarCerto!",
-      "candidatura": [
-        {
-          "idVaga": "1",
-          "idCandidato": 1,
-          "reprovado": false
-        }
-      ],
+      "candidatura": [],
       "id": 1
     },
     {
@@ -33,13 +27,7 @@
       "titulo": "Dev Senior",
       "descricao": "Melhor vaga de todos os tempos",
       "remuneracao": "R$50000",
-      "candidatos": [
-        {
-          "idVaga": "1",
-          "idCandidato": 1,
-          "reprovado": false
-        }
-      ],
+      "candidatos": [],
       "id": 1,
       "candidatura": []
     },
