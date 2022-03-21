@@ -6,17 +6,26 @@
       "dataNascimento": "12/10/1997",
       "email": "maria@dbccompany.com",
       "senha": "123vaidarCerto!",
-      "candidatura": [],
+      "candidatura": [
+        {
+          "idVaga": "1",
+          "idCandidato": 1,
+          "reprovado": false
+        }
+      ],
       "id": 1
     },
     {
+      "id": 2
+    },
+    {
       "tipo": "Recrutador",
-      "nome": "José",
+      "nome": "Farinha",
       "dataNascimento": "12/10/1997",
-      "email": "jose@dbccompany.com",
+      "email": "farinha@dbccompany.com",
       "senha": "123vaidarCerto!",
       "candidatura": [],
-      "id": 2
+      "id": 3
     }
   ],
   "Vagas": [
@@ -46,6 +55,27 @@
         }
       ],
       "id": 2
+    },
+    {
+      "titulo": "Construtor de Pontes",
+      "descricao": "Fazer uma ponte ué",
+      "remuneracao": "R$50000",
+      "candidatos": [],
+      "id": 3
+    },
+    {
+      "titulo": "Dev junior",
+      "descricao": "Esta nao é a melhor vaga, mas tá perfeita tambem",
+      "remuneracao": "R$50000",
+      "candidatos": [],
+      "id": 4
+    },
+    {
+      "titulo": "Dev Senior",
+      "descricao": "Melhor vaga de todos os tempos",
+      "remuneracao": "R$50000",
+      "candidatos": [],
+      "id": 5
     }
   ]
 }
