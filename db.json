@@ -20,6 +20,15 @@
       "senha": "123vaidarCerto!",
       "candidatura": [],
       "id": 3
+    },
+    {
+      "tipo": "Trabalhador",
+      "nome": "Thais Bertoldi",
+      "dataNascimento": "12/10/1997",
+      "email": "thais_brt@dbccompany.com",
+      "senha": "123vaidarCerto!",
+      "candidatura": [],
+      "id": 4
     }
   ],
   "Vagas": [

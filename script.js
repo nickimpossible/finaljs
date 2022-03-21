@@ -67,15 +67,17 @@ const validarEmail = (event) => {
 }
 const validarSenha = (event) => {
     const input = event ? event.target : document.getElementById('senha-input');
-    const { value: senha } = input;
-    input.value = input.value.replaceAll(' ', '');
-    let caracteresSenha = [...senha];
-    let possuiLetraMinuscula = caracteresSenha.some(c => c.toLowerCase() === c);
-    let possuiLetraMaiuscula = caracteresSenha.some(c => c.toUpperCase() === c);
-    let possuiEspecial = caracteresSenha.some(c => c.toUpperCase() === c.toLowerCase() && isNaN(c));
-    let possuiNumero = caracteresSenha.some(c => c.toUpperCase() === c.toLowerCase() && !isNaN(c));
-    let peloMenosOito = senha.length >= 8;
-    const ehValido = possuiLetraMinuscula && possuiLetraMaiuscula && possuiEspecial && possuiNumero && peloMenosOito;
+    const { value: senhaDigitada } = input;
+    let listaCaracteres = senhaDigitada.split('');
+    let letras = listaCaracteres.filter(char => char.toLowerCase() !== char.toUpperCase());
+    let possuiLetraMaiuscula = letras.some(l => l.toUpperCase() === l); // "A".toUppercase() === "A"
+    let possuiLetraMinuscula = letras.some(l => l.toLowerCase() === l);
+    let possuiCharEspecial = listaCaracteres.some(char => char.toLowerCase() === char.toUpperCase() && isNaN(parseInt(char)));
+    let possuiNumero = listaCaracteres.some(char => char.toLowerCase() === char.toUpperCase() && !isNaN(parseInt(char)));
+    let possuiOitoCaracteres = senhaDigitada.length >= 8;
+    let naoPossuiEspacos = !senhaDigitada.includes(' ');
+    let ehValido = possuiOitoCaracteres && possuiLetraMaiuscula && possuiLetraMinuscula &&
+        possuiCharEspecial && possuiNumero && naoPossuiEspacos;
     booleanDoData = ehValido;
     mensagemErro(ehValido, 'password-registration-error')
 }
