@@ -2,59 +2,37 @@
   "Usuarios": [
     {
       "tipo": "Trabalhador",
-      "nome": "Joao",
+      "nome": "batata",
       "dataNascimento": "12/10/1997",
-      "email": "joao@dbccompany.com",
+      "email": "batata@dbccompany.com",
       "senha": "123vaidarCerto!",
-      "candidatura": [
-        [
-          {
-            "idVaga": "2",
-            "idCandidato": 1,
-            "reprovado": false
-          }
-        ]
-      ],
+      "candidatura": [],
       "id": 1
     },
     {
+      "tipo": "Recrutador",
+      "nome": "chocolate",
+      "dataNascimento": "12/10/1997",
+      "email": "c@dbccompany.com",
+      "senha": "123vaidarCerto!",
+      "candidatura": [],
       "id": 2
     }
   ],
   "Vagas": [
     {
-      "titulo": "Dev junior",
-      "descricao": "Esta nao é a melhor vaga, mas tá perfeita tambem",
-      "remuneracao": "R$2000",
-      "candidatos": [
-        [
-          [],
-          {
-            "idVaga": "1",
-            "idCandidato": 1,
-            "reprovado": false
-          }
-        ],
-        {
-          "idVaga": "1",
-          "idCandidato": 1,
-          "reprovado": false
-        }
-      ],
-      "id": 1
-    },
-    {
       "titulo": "Dev Senior",
       "descricao": "Melhor vaga de todos os tempos",
       "remuneracao": "R$50000",
-      "candidatos": [
-        [],
-        {
-          "idVaga": "2",
-          "idCandidato": 1,
-          "reprovado": false
-        }
-      ],
+      "candidatos": [],
+      "id": 1,
+      "candidatura": []
+    },
+    {
+      "titulo": "Dev junior",
+      "descricao": "Esta nao é a melhor vaga, mas tá perfeita tambem",
+      "remuneracao": "R$2000",
+      "candidatos": [],
       "id": 2
     }
   ]

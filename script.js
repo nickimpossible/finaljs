@@ -1,3 +1,4 @@
+
 //json-server --watch db.json
 const arrayDosFuncionario = [];
 class Usuario {
@@ -363,14 +364,16 @@ const seCandidar = async () => {
             console.log(success)
         })
 
-    let vagasComCandidatos;
+    let vagasComCandidatos = [];
     await axios.get(`http://localhost:3000/Vagas/${usuarioDoSite[1]}`)
         .then((success) => {
-            let vaga = success.data;
-            let candidatosVaga = [success.data.candidatos];
-            candidatosVaga.push(instaciaVaga)
-            vagasComCandidatos = { ...vaga, candidatos: candidatosVaga }
+            let vagasAlgumaCoisa = [];
+            vagasAlgumaCoisa.push(instaciaVaga)
+            success.data.candidatos = vagasAlgumaCoisa;
+            let dadosVaga = success.data;
+            vagasComCandidatos = { ...dadosVaga };
         })
+
     await axios.put(`http://localhost:3000/Vagas/${usuarioDoSite[1]}`, vagasComCandidatos)
         .then((success) => {
             console.log('Sucesso! Usuario cadastrado na vaga')
@@ -383,34 +386,54 @@ const cancelarCandidatura = async () => {
     let conteudo = [];
     await axios.get(`http://localhost:3000/Usuarios/${usuarioDoSite[0]}`)
         .then((success) => {
-            if (success.data.candidatura.reprovado === true) {
-                alert('Você nao pode se descandidatar dessa vaga pois foi reprovado. Ô dó')
-                botaoDescandidatar.classList.add('disabled', true)
-            }
             let verificaVaga = [success.data.candidatura]
             let vagaSelecionadas = [];
-            verificaVaga = success.data.candidatura.forEach((element) => {
-                if (element.idVaga != usuarioDoSite[1]) {
-                    vagaSelecionadas.push(element);
-                }
+            if (success.data.candidatura.reprovado === true) {
+                alert('Você nao pode se descandidatar dessa vaga pois foi reprovado. Ô dó')
+                btnSairCandidatura.classList.add('disabled', true)
             }
+            verificaVaga = success.data.candidatura.forEach((element) =>{
+                if(element.idVaga != usuarioDoSite[1]){
+                vagaSelecionadas.push(element);
+                 }
+             }
             );
             success.data.candidatura = [];
             conteudo = { ...success.data };
-            conteudo.candidatura.push(vagaSelecionadas);
+            //conteudo.candidatura.push(vagaSelecionadas);
             btnCadastrar.classList.toggle('d-none');
             btnSairCandidatura.classList.toggle('d-none');
 
         })
-    axios.put(`http://localhost:3000/Usuarios/${usuarioDoSite[0]}`, conteudo)
-        .then((success) => {
+    await axios.put(`http://localhost:3000/Usuarios/${usuarioDoSite[0]}`, conteudo)
+        .then((success) =>{
             alert('Você saiu dessa candidatura')
             const btnCadastrar = document.getElementById('btn-cadastro');
             const btnSairCandidatura = document.getElementById('btn-sair-candidatura');
             btnCadastrar.classList.remove('d-none');
             btnSairCandidatura.classList.add('d-none');
         })
-
+    
+    let conteudoVaga = [];
+    await axios.get(`http://localhost:3000/Vagas/${usuarioDoSite[1]}`)
+        .then((success) => {
+            let vagaSelecionadas = [];
+            success.data.candidatos.forEach((element) =>{
+                if(parseInt(element.idVaga) != usuarioDoSite[1]){
+                vagaSelecionadas.push(element);
+                 }
+             }
+            );
+            success.data.candidatos = [];
+            conteudoVaga = { ...success.data };
+        })
+    
+    await axios.put(`http://localhost:3000/Vagas/${usuarioDoSite[1]}`, conteudoVaga)
+    .then ((success) => {
+        console.log('nao deu erro')
+    }) .catch((erro) => {
+        console.log('deu erro aqui')
+    })
 }
 
 {/* <div id="lista-candidatos-recrutador" class="d-flex w-75 p-2 justify-content-between align-items-center">
@@ -430,7 +453,7 @@ const mostrarCandidatos = async () => {
     await axios.get(`http://localhost:3000/Vagas/${usuarioDoSite[1]}`)
         .then(async (sucess) => {
             let dataUsers = sucess.data.candidatos;
-           console.log(sucess.data.candidatos)
+            console.log(sucess.data.candidatos)
             console.log(dataUsers)
 
             const divNome = document.createElement('div');
@@ -450,18 +473,18 @@ const mostrarCandidatos = async () => {
             await axios.get(`http://localhost:3000/Usuarios`)
                 .then((success) => {
                     dataUsers.forEach(elemento => {
-                    success.data.forEach(el => {
-                        if (elemento.idCandidato == el.id) {
-                            pNome.textContent = el.nome
-                            pData.textContent = el.dataNascimento
-                            divButton.append(buttonReprove)
-                            divNome.append(pNome);
-                            divData.append(pData);
-                            listadeCandidatos.append(divNome, divData, divButton);
-                        }
+                        success.data.forEach(el => {
+                            if (elemento.idCandidato == el.id) {
+                                pNome.textContent = el.nome
+                                pData.textContent = el.dataNascimento
+                                divButton.append(buttonReprove)
+                                divNome.append(pNome);
+                                divData.append(pData);
+                                listadeCandidatos.append(divNome, divData, divButton);
+                            }
+                        })
                     })
                 })
-            })
 
 
             if (trabalhador) {
